@@ -1,9 +1,10 @@
 // app/projeler/page.tsx
 import PageBanner from "@/components/PageBanner";
 import Image from "next/image";
+import Link from "next/link"; // Link eklendi
 import { MapPin } from "lucide-react";
 
-// Örnek Proje Verileri (Gerçekte veritabanından gelebilir)
+// Verileri burada tutuyoruz (İleride veritabanından gelecek)
 const allProjects = [
   { id: 1, title: "Vadi İstanbul Konakları", loc: "Sarıyer, İstanbul", type: "Konut", img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00" },
   { id: 2, title: "Organize Sanayi Depo", loc: "Sincan, Ankara", type: "Sanayi", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d" },
@@ -16,15 +17,13 @@ const allProjects = [
 export default function ProjelerPage() {
   return (
     <main>
-      <PageBanner 
-        title="PROJELERİMİZ" 
-        image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80" 
-      />
+      <PageBanner title="PROJELERİMİZ" image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80" />
 
       <section className="py-20 container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {allProjects.map((project) => (
-            <div key={project.id} className="group cursor-pointer">
+            // DÜZELTME: Div yerine Link kullanıldı ve projeye özel ID verildi
+            <Link key={project.id} href={`/projeler/${project.id}`} className="group cursor-pointer block">
               <div className="relative h-72 overflow-hidden rounded-sm mb-4">
                 <Image 
                   src={project.img} 
@@ -43,7 +42,7 @@ export default function ProjelerPage() {
                 <MapPin size={16} className="mr-1" />
                 {project.loc}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
