@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link"; // Yönlendirme için eklendi
 import { useState } from "react";
 import { ArrowUpRight, BookOpen, TrendingUp, X, Calendar, Newspaper } from "lucide-react";
 
 // --- 1. HABER İÇERİKLERİNİ BURADAN YÖNETİYORUZ ---
-// DÜZELTME: Buradaki image yollarını da aşağıda kullandığın ve çalıştığını söylediğin yol ile güncelledim.
 const newsContent = {
   "konya-osb": {
     title: "Konya OSB Genişliyor: Sanayi İmarlı Arsalarda 'Altın Çağ'",
     date: "12 ARALIK 2025",
-    // MODAL BU YOLU KULLANIR:
     image: "/Yeni klasör (2)/konyaosb.webp", 
     category: "YATIRIM FIRSATI",
     body: (
@@ -28,7 +27,6 @@ const newsContent = {
   "sukran-donusum": {
     title: "Şükran Mahallesi Dönüşümü Tamamlanıyor",
     date: "12 KASIM 2024",
-    // MODAL BU YOLU KULLANIR:
     image: "/Yeni klasör (2)/1_88.jpg",
     category: "KENTSEL DÖNÜŞÜM",
     body: (
@@ -45,7 +43,6 @@ const newsContent = {
   "2025-beklentileri": {
     title: "2025 Emlak Beklentileri: Fiyatlar %50 Artabilir",
     date: "RAPOR",
-    // MODAL BU YOLU KULLANIR:
     image: "/Yeni klasör (2)/artabilir.avif",
     category: "ANALİZ",
     body: (
@@ -63,7 +60,6 @@ const newsContent = {
   "manset-haber": { 
     title: "Konya'nın Yeni 'Gelişim Vadisi' Belli Oldu",
     date: "ÖZEL HABER",
-    // MODAL BU YOLU KULLANIR:
     image: "/Yeni klasör (2)/gelisim.jpg",
     category: "MANŞET",
     body: (
@@ -107,7 +103,7 @@ export default function MedyaPage() {
             </button>
 
             <div className="relative h-64 md:h-80 w-full">
-                {/* Modal Görseli - Veri kaynağından (newsContent) gelir */}
+                {/* Modal Görseli */}
                 <Image 
                     src={activeData.image} 
                     alt={activeData.title}
@@ -207,7 +203,7 @@ export default function MedyaPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#051328] via-transparent to-transparent opacity-90"></div>
               <div className="absolute bottom-0 left-0 p-10 w-full">
                   <div className="text-[#D4AF37] text-xs font-bold tracking-widest uppercase mb-3 flex items-center gap-2">
-                     <TrendingUp size={16} /> YATIRIM FIRSATI
+                      <TrendingUp size={16} /> YATIRIM FIRSATI
                   </div>
                   <h3 className="text-3xl md:text-4xl font-serif text-white mb-4 leading-tight">
                     Konya OSB Genişliyor: Sanayi İmarlı Arsalarda "Altın Çağ"
@@ -220,10 +216,10 @@ export default function MedyaPage() {
             <div onClick={() => openModal('sukran-donusum')} className="group cursor-pointer flex flex-col h-[500px] block">
                <div className="relative h-3/5 overflow-hidden rounded-sm mb-6">
                  <Image 
-                    src="/Yeni klasör (2)/1_88.jpg" 
-                    alt="Şükran Kentsel Dönüşüm" 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                   src="/Yeni klasör (2)/1_88.jpg" 
+                   alt="Şükran Kentsel Dönüşüm" 
+                   fill 
+                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                  />
                  <div className="absolute top-4 right-4 bg-[#051328] text-white px-3 py-1 text-xs font-bold">MERAM</div>
                </div>
@@ -255,7 +251,7 @@ export default function MedyaPage() {
                </span>
             </div>
 
-            {/* KART 4: (ESKİ VIDEO YERİ - YENİ MANŞET HABER GÖRSELİ) */}
+            {/* KART 4: MANŞET HABER */}
             <div onClick={() => openModal('manset-haber')} className="lg:col-span-2 relative h-[400px] rounded-sm overflow-hidden group cursor-pointer block">
                <Image 
                  src="/Yeni klasör (2)/artabilir.avif" 
@@ -264,7 +260,7 @@ export default function MedyaPage() {
                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                />
                
-               {/* Overlay - Gradient */}
+               {/* Overlay */}
                <div className="absolute inset-0 bg-gradient-to-r from-[#051328] via-[#051328]/60 to-transparent"></div>
                
                {/* İçerik */}
@@ -288,18 +284,23 @@ export default function MedyaPage() {
         </div>
       </section>
 
-      {/* 4. NEWSLETTER */}
+      {/* 4. KAPALI PORTFÖY / İLETİŞİM ALANI */}
       <section className="py-24 bg-[#051328] relative overflow-hidden border-t border-white/10">
          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4AF37] rounded-full blur-[250px] opacity-10 pointer-events-none"></div>
          <div className="container mx-auto px-6 text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">"Kapalı Portföy" Listesi</h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10">
-               Halka arz edilmeyen, sadece özel müşterilerimizle paylaştığımız fırsat dosyaları için listeye katılın.
+               Halka arz edilmeyen, sadece özel müşterilerimizle paylaştığımız fırsat dosyaları için iletişime geçin.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center max-w-lg mx-auto gap-0">
-               <input type="email" placeholder="E-posta adresiniz" className="w-full bg-white/5 border border-white/10 text-white px-6 py-4 rounded-t-lg sm:rounded-l-lg sm:rounded-r-none"/>
-               <button className="bg-[#D4AF37] text-[#051328] px-8 py-4 font-bold uppercase rounded-b-lg sm:rounded-r-lg sm:rounded-l-none">DAVET İSTE</button>
-            </div>
+            
+            {/* GÜNCELLENEN BUTON ALANI */}
+            <Link 
+              href="/iletisim" 
+              className="inline-block bg-[#D4AF37] text-[#051328] px-12 py-4 text-lg font-bold uppercase tracking-widest rounded-sm hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+            >
+              İLETİŞİME GEÇ
+            </Link>
+
          </div>
       </section>
 
