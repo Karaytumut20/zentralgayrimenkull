@@ -13,7 +13,7 @@ export default function GizlilikPage() {
         <div className="prose prose-lg text-gray-600">
           <h2 className="text-2xl font-bold text-slate-900 mb-4">1. Veri Güvenliği Hakkında</h2>
           <p className="mb-6">
-            Kurultay Gayrimenkul Yatırım A.Ş. ("Şirket") olarak, kişisel verilerinizin güvenliği hususuna azami hassasiyet göstermekteyiz. Bu bilinçle, Şirket olarak ürün ve hizmetlerimizden faydalanan kişiler dahil, Şirket ile ilişkili tüm şahıslara ait her türlü kişisel verinin 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVK Kanunu")'na uygun olarak işlenerek, muhafaza edilmesine büyük önem atfetmekteyiz.
+            Zentral Gayrimenkul Yatırım A.Ş. (Şirket) olarak, kişisel verilerinizin güvenliği hususuna azami hassasiyet göstermekteyiz. Bu bilinçle, Şirket olarak ürün ve hizmetlerimizden faydalanan kişiler dahil, Şirket ile ilişkili tüm şahıslara ait her türlü kişisel verinin 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVK Kanunu")'na uygun olarak işlenerek, muhafaza edilmesine büyük önem atfetmekteyiz.
           </p>
 
           <h2 className="text-2xl font-bold text-slate-900 mb-4">2. Kişisel Verilerin Toplanması</h2>
@@ -23,7 +23,7 @@ export default function GizlilikPage() {
 
           <h2 className="text-2xl font-bold text-slate-900 mb-4">3. İletişim</h2>
           <p>
-            Kişisel verilerinizle ilgili her türlü soru ve görüşleriniz için <strong>info@kurultay.org</strong> adresinden bize ulaşabilirsiniz.
+            Kişisel verilerinizle ilgili her türlü soru ve görüşleriniz için <strong>info@zentral.org</strong> adresinden bize ulaşabilirsiniz.
           </p>
         </div>
       </section>

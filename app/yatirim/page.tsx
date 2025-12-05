@@ -30,7 +30,7 @@ export default function YatirimPage() {
                </span>
              </h2>
              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-               Enflasyonist ortamda nakitte kalmak, kaybetmeyi kabul etmektir. Kurultay Gayrimenkul olarak, 
+               Enflasyonist ortamda nakitte kalmak, kaybetmeyi kabul etmektir. Zentral Gayrimenkul olarak, 
                sadece mülk satmıyoruz; <strong>servet koruma ve büyütme stratejileri</strong> sunuyoruz. 
                Döviz ve altının durağanlığına inat, toprak yatırımı ve ticari mülklerle reel büyüme vadediyoruz.
              </p>

@@ -2,17 +2,17 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Linkleri burada tanımlıyoruz ki hem masaüstü hem mobilde aynısı olsun ve hata çıkmasın.
+  // "PROJELER" linki kaldırıldı
   const navLinks = [
-    { name: 'ANASAYFA', href: '/' }, // <-- Burası artık direkt ana dizine gider
+    { name: 'ANASAYFA', href: '/' },
     { name: 'KURUMSAL', href: '/kurumsal' },
-    { name: 'PROJELER', href: '/projeler' },
     { name: 'YATIRIM', href: '/yatirim' },
     { name: 'MEDYA', href: '/medya' },
   ];
@@ -30,16 +30,14 @@ export default function Header() {
       <div className="container mx-auto px-6 flex justify-between items-center">
         
         {/* LOGO */}
-        <Link href="/" className="flex items-center gap-2 group">
-           <div className="w-10 h-10 bg-yellow-600 flex items-center justify-center text-white font-bold text-2xl rounded-sm">K</div>
-           <div className="flex flex-col">
-             <span className="text-2xl font-extrabold tracking-tighter text-white leading-none">
-               KURULTAY<span className="text-yellow-600">.</span>
-             </span>
-             <span className="text-[10px] tracking-[0.3em] text-gray-300 uppercase leading-none mt-1">
-               Gayrimenkul A.Ş.
-             </span>
-           </div>
+        <Link href="/" className=" items-center gap-2 group relative w-68 h-18">
+           <Image 
+             src="/Yeni klasör (2)/test.png" 
+             alt="Zentral Gayrimenkul" 
+             fill 
+             className="object-contain object-left" 
+             priority
+           />
         </Link>
 
         {/* DESKTOP MENU */}
@@ -47,7 +45,7 @@ export default function Header() {
           {navLinks.map((item) => (
             <Link 
               key={item.name} 
-              href={item.href} // <-- Düzeltilen kısım
+              href={item.href}
               className="text-sm font-bold text-white hover:text-yellow-500 transition-colors tracking-wide relative group"
             >
               {item.name}
@@ -73,18 +71,16 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 w-full bg-[#0f172a] border-t border-gray-800 animate-in slide-in-from-top-5">
           <div className="flex flex-col p-8 space-y-6 text-center">
-            {/* Masaüstü menüdekiler */}
             {navLinks.map((item) => (
               <Link 
                 key={item.name} 
                 href={item.href} 
-                onClick={() => setIsMobileMenuOpen(false)} // Tıklayınca menüyü kapat
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="text-white font-bold text-lg hover:text-yellow-500 tracking-widest"
               >
                 {item.name}
               </Link>
             ))}
-            {/* İletişim Mobilde Menü içinde de olsun */}
             <Link 
                 href="/iletisim"
                 onClick={() => setIsMobileMenuOpen(false)}

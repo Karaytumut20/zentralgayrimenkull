@@ -17,12 +17,12 @@ export default function KullanimSartlariPage() {
 
           <h2 className="text-2xl font-bold text-slate-900 mb-4">Fikri Mülkiyet Hakları</h2>
           <p className="mb-6">
-            Bu internet sitesinde bulunan bilgiler, yazılar, resimler, markalar, slogan ve diğer işaretler ile sair sınaî ve fikri mülkiyet haklarına ilişkin bilgilerin korunmasına yönelik programlarla, sayfa düzeni ve işbu internet sitesinin sunumu Kurultay Gayrimenkul'ün ya da Kurultay Gayrimenkul'ün izin ve lisans aldığı kuruluşların mülkiyetindedir.
+            Bu internet sitesinde bulunan bilgiler, yazılar, resimler, markalar, slogan ve diğer işaretler ile sair sınaî ve fikri mülkiyet haklarına ilişkin bilgilerin korunmasına yönelik programlarla, sayfa düzeni ve işbu internet sitesinin sunumu Zentral Gayrimenkul'ün ya da Zentral Gayrimenkul'ün izin ve lisans aldığı kuruluşların mülkiyetindedir.
           </p>
 
           <h2 className="text-2xl font-bold text-slate-900 mb-4">Sorumluluk Reddi</h2>
           <p className="mb-6">
-            Kurultay Gayrimenkul, bu internet sitesinde yer alan bütün ürün ve hizmetleri, sayfaları, bilgileri, görsel unsurları önceden bildirimde bulunmadan değiştirme hakkını saklı tutar.
+            Zentral Gayrimenkul, bu internet sitesinde yer alan bütün ürün ve hizmetleri, sayfaları, bilgileri, görsel unsurları önceden bildirimde bulunmadan değiştirme hakkını saklı tutar.
           </p>
         </div>
       </section>

@@ -17,7 +17,7 @@ export default function HeroSection() {
           className="w-full h-full object-cover"
         >
           {/* DİKKAT: Videonu 'public' klasörüne at ve adını buraya yaz */}
-          <source src="/Yeni klasör (2)/video/zentralgayrimenkul.mp4" type="video/mp4" />
+          <source src="/Yeni klasör (2)/video/Zentralgayrimenkul.mp4" type="video/mp4" />
           
           Tarayıcınız video etiketini desteklemiyor.
         </video>

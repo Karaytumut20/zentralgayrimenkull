@@ -101,15 +101,10 @@ export default function KurumsalPage() {
           <p className="text-2xl md:text-3xl font-light italic leading-relaxed max-w-4xl mb-10 text-gray-200">
             "Bizim işimiz binalar değil, insanlardır. Bir ailenin huzurla oturacağı bir ev bulduğumuzda veya bir yatırımcının birikimini katladığımızda hissettiğimiz mutluluk, tüm ticari kaygıların ötesindedir."
           </p>
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-gray-300 border-2 border-yellow-500 overflow-hidden">
-               <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200" alt="CEO" className="w-full h-full object-cover" />
-            </div>
-            <div className="text-left">
-              <div className="font-bold text-xl text-white">Ahmet Yılmaz</div>
-              <div className="text-yellow-500 text-sm">Kurucu & Yönetim Kurulu Bşk.</div>
-            </div>
-          </div>
+          <div className="flex flex-col items-center justify-center text-center gap-1">
+  <div className="font-bold text-xl text-white">Semih Bahadır KAHRAMAN</div>
+  <div className="text-yellow-500 text-sm">Kurucu & Yönetim Kurulu Bşk.</div>
+</div>
         </div>
       </section>
 

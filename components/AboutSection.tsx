@@ -51,7 +51,7 @@ export default function AboutSection() {
             </h2>
             
             <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
-              Kurultay, gayrimenkul geliştirme ve yatırım alanında Türkiye nin önde gelen kuruluşlarından biridir. Sadece metrekare değil, yaşam kalitesi ve yüksek yatırım geri dönüşü (ROI) üretiyoruz.
+              Zentral, gayrimenkul geliştirme ve yatırım alanında Türkiye nin önde gelen kuruluşlarından biridir. Sadece metrekare değil, yaşam kalitesi ve yüksek yatırım geri dönüşü (ROI) üretiyoruz.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">

@@ -1,25 +1,23 @@
 // components/Footer.tsx
 import Link from 'next/link';
 import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Footer() {
   
-  // Linkleri burada tanımlıyoruz ki yönetmesi kolay olsun
   const quickLinks = [
     { name: 'Anasayfa', href: '/' },
     { name: 'Kurumsal', href: '/kurumsal' },
-    { name: 'Projeler', href: '/projeler' },
     { name: 'Yatırım', href: '/yatirim' },
     { name: 'Medya & Haberler', href: '/medya' },
     { name: 'İletişim', href: '/iletisim' },
   ];
 
   const activityLinks = [
-    { name: 'Sanayi Arsaları', href: '/yatirim' }, // Yatırım sayfasına gider
-    { name: 'Fabrika Projeleri', href: '/projeler' }, // Projelere gider
-    { name: 'Ticari Plazalar', href: '/projeler' },
+    { name: 'Sanayi Arsaları', href: '/yatirim' },
     { name: 'Arsa Geliştirme', href: '/yatirim' },
     { name: 'Yurtdışı Yatırım', href: '/yatirim' },
+    { name: 'Yatırım Danışmanlığı', href: '/yatirim' }, 
   ];
 
   return (
@@ -29,14 +27,20 @@ export default function Footer() {
           
           {/* 1. Sütun: Firma Bilgisi */}
           <div>
-            <Link href="/" className="text-3xl font-bold tracking-tighter text-white block mb-6">
-              KURULTAY<span className="text-yellow-500">.</span>
+            {/* LOGO GÜNCELLEMESİ: Yazı yerine Resim */}
+            <Link href="/" className="relative block w-64 h-16 mb-6">
+                <Image 
+                    src="/Yeni klasör (2)/test.png" 
+                    alt="Zentral Gayrimenkul" 
+                    fill 
+                    className="object-contain object-left" 
+                />
             </Link>
+
             <p className="text-sm leading-relaxed mb-6 text-gray-400">
               Gayrimenkul ve yatırım sektöründe 15 yılı aşkın tecrübemizle, yerel ve global pazarlarda değer üreten projeler geliştiriyoruz.
             </p>
             <div className="flex gap-4">
-              {/* Sosyal Medya İkonları (Linkleri olmadığı için # kaldı) */}
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-yellow-600 hover:text-white transition-all"><Facebook size={18} /></a>
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-yellow-600 hover:text-white transition-all"><Twitter size={18} /></a>
               <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-yellow-600 hover:text-white transition-all"><Instagram size={18} /></a>
@@ -44,7 +48,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 2. Sütun: Hızlı Erişim (DÜZELTİLDİ) */}
+          {/* 2. Sütun: Hızlı Erişim */}
           <div>
             <h3 className="text-white font-bold text-lg mb-6 border-l-4 border-yellow-600 pl-3">Hızlı Erişim</h3>
             <ul className="space-y-3">
@@ -59,7 +63,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 3. Sütun: Faaliyet Alanları (YÖNLENDİRİLDİ) */}
+          {/* 3. Sütun: Faaliyet Alanları */}
           <div>
             <h3 className="text-white font-bold text-lg mb-6 border-l-4 border-yellow-600 pl-3">Faaliyet Alanları</h3>
             <ul className="space-y-3">
@@ -88,7 +92,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="text-yellow-600 shrink-0" size={18} />
-                <p>info@kurultay.org</p>
+                <p>info@zentral.org</p>
               </div>
             </div>
           </div>
@@ -96,10 +100,10 @@ export default function Footer() {
         </div>
       </div>
       
-      {/* Copyright Bar (Linkler Eklendi) */}
+      {/* Copyright Bar */}
       <div className="bg-[#050911] py-6 text-center text-xs text-gray-500 border-t border-gray-900">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-          <p>&copy; 2024 Kurultay Gayrimenkul Yatırım A.Ş. Tüm hakları saklıdır.</p>
+          <p>&copy; 2024 Zentral Gayrimenkul Yatırım A.Ş. Tüm hakları saklıdır.</p>
           <div className="flex gap-4 mt-2 md:mt-0">
             <Link href="/gizlilik-politikasi" className="hover:text-white transition-colors">Gizlilik Politikası</Link>
             <Link href="/kullanim-sartlari" className="hover:text-white transition-colors">Kullanım Şartları</Link>

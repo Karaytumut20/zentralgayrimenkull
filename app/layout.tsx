@@ -13,7 +13,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Kurultay Gayrimenkul Yatırım",
+  title: "Zentral Gayrimenkul Yatırım",
   description: "Global gayrimenkul ve inşaat projeleri.",
 };
 
