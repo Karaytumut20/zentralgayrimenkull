@@ -23,7 +23,7 @@ export default function GizlilikPage() {
 
           <h2 className="text-2xl font-bold text-slate-900 mb-4">3. İletişim</h2>
           <p>
-            Kişisel verilerinizle ilgili her türlü soru ve görüşleriniz için <strong>info@zentral.org</strong> adresinden bize ulaşabilirsiniz.
+            Kişisel verilerinizle ilgili her türlü soru ve görüşleriniz için <strong>zentralgayrimenkul@gmail.com</strong> adresinden bize ulaşabilirsiniz.
           </p>
         </div>
       </section>

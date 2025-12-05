@@ -64,7 +64,7 @@ export default function IletisimPage() {
 
               {/* E-POSTA KUTUSU (Tıklanabilir - Mail Gönderir) */}
               <a 
-                href="mailto:info@zentral.org" 
+                href="mailto:zentralgayrimenkul@gmail.com" 
                 className="flex items-start gap-6 group cursor-pointer"
               >
                 <div className="w-14 h-14 bg-[#051328] text-[#D4AF37] flex items-center justify-center rounded-sm shadow-xl group-hover:bg-[#D4AF37] group-hover:text-[#051328] transition-all duration-300">
@@ -72,7 +72,7 @@ export default function IletisimPage() {
                 </div>
                 <div>
                   <h4 className="font-bold text-[#051328] text-lg mb-1 group-hover:text-[#D4AF37] transition-colors">E-Posta</h4>
-                  <p className="text-gray-600 font-medium group-hover:text-gray-800 transition-colors">info@zentral.org</p>
+                  <p className="text-gray-600 font-medium group-hover:text-gray-800 transition-colors">zentralgayrimenkul@gmail.com</p>
                   <p className="text-gray-400 text-sm">7/24 Bize yazabilirsiniz</p>
                 </div>
               </a>

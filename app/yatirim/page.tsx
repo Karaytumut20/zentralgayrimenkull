@@ -1,13 +1,25 @@
 // app/yatirim/page.tsx
+"use client"; // Pop-up (Etkileşim) olduğu için bu satır şart
+
 import PageBanner from "@/components/PageBanner";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react"; // State kontrolü için
 import { 
   TrendingUp, PieChart, Shield, Globe, ArrowRight, CheckCircle2, 
-  BarChart3, Landmark, Building, Briefcase, Coins, Map, AreaChart 
+  Landmark, Building, Briefcase, Coins, Map, AreaChart, X, ExternalLink
 } from "lucide-react";
 
 export default function YatirimPage() {
+  // Pop-up'ın açık/kapalı durumunu tutan state
+  const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
+
+  // Linkleri buradan yönetebilirsin
+  const links = {
+    sahibinden: "https://zentralgayrimenkul.sahibinden.com/", 
+    hepsiemlak: "https://www.hepsiemlak.com/emlak-ofisi/zentral-gayrimenkul-161271",
+  };
+
   return (
     <main className="bg-white text-slate-800">
       {/* 1. HERO BANNER */}
@@ -85,6 +97,30 @@ export default function YatirimPage() {
           </div>
         </div>
       </section>
+      <section className="py-24 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80')] bg-cover bg-center bg-fixed relative">
+        <div className="absolute inset-0 bg-slate-900/90"></div>
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Geleceğinizi Bugün İnşa Edin</h2>
+          <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-xl leading-relaxed">
+            Sınırlı sayıdaki fırsat portföylerimiz ve lansmana özel fiyatlarımız için yatırım danışmanlarımızla iletişime geçin.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+             <Link href="/iletisim" className="bg-yellow-600 text-white px-10 py-4 font-bold rounded-lg hover:bg-yellow-500 transition-all shadow-[0_0_20px_rgba(202,138,4,0.5)] transform hover:scale-105">
+               ÜCRETSİZ DANIŞMANLIK AL
+             </Link>
+             
+             {/* POP-UP TETİKLEYİCİ BUTON */}
+             {/* Artık Link yerine button kullanıyoruz */}
+             <button 
+               onClick={() => setIsPortfolioModalOpen(true)}
+               className="bg-transparent border-2 border-white text-white px-10 py-4 font-bold rounded-lg hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center gap-2"
+             >
+               GÜNCEL FIRSATLARI GÖR
+               <ExternalLink size={18} />
+             </button>
+          </div>
+        </div>
+      </section>
 
       {/* 3. YATIRIM MODELLERİ (4 ANA KART) */}
       <section className="py-24 bg-gray-50">
@@ -157,9 +193,73 @@ export default function YatirimPage() {
           </div>
         </div>
       </section>
-
+      {/* 6. SİMÜLASYON / ÖRNEK SENARYO */}
+      <section className="py-20 ">
+        <div className="container mx-auto px-6">
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl flex flex-col md:flex-row gap-12 items-center">
+            <div className="md:w-1/2">
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Örnek Senaryo: Arsa Yatırımı</h3>
+              <p className="text-gray-600 mb-6">
+                2020 yılında Konya Yazır bölgesinden m²'si 200 TL'den alınan 1000m² arsanın bugünkü piyasa değeri analizi.
+              </p>
+              <div className="space-y-4">
+                 <div className="flex justify-between items-center border-b pb-2">
+                    <span className="font-semibold text-gray-500">Başlangıç Yatırımı (2020)</span>
+                    <span className="font-bold text-slate-900">200.000 ₺</span>
+                 </div>
+                 <div className="flex justify-between items-center border-b pb-2">
+                    <span className="font-semibold text-gray-500">Mevcut Değer (2025)</span>
+                    <span className="font-bold text-slate-900">3.500.000 ₺</span>
+                 </div>
+                 <div className="flex justify-between items-center bg-green-50 p-3 rounded-lg">
+                    <span className="font-bold text-green-700">NET KAZANÇ</span>
+                    <span className="font-bold text-green-700 text-xl">%1650 Artış</span>
+                 </div>
+              </div>
+            </div>
+            <div className="md:w-1/2 relative">
+               <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-2xl opacity-20"></div>
+               <div className="relative bg-slate-900 text-white p-8 rounded-2xl text-center transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                  <Landmark size={48} className="mx-auto text-yellow-500 mb-4" />
+                  <p className="text-lg font-light opacity-90">Gayrimenkul, siz uyurken bile sizin için çalışmaya devam eden tek yatırımdır.</p>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* 4. STRATEJİK BÖLGELER (KONYA ODAKLI) */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+ 
+      {/* 5. SÜREÇ: NASIL ÇALIŞIR? */}
+      <section className="py-24 bg-white text-slate-900">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold mb-16">Profesyonel Yatırım Yönetimi</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { icon: <Globe size={40} />, title: "Pazar Analizi", desc: "Veriye dayalı analizlerle şehrin en hızlı değerlenen noktalarını tespit ediyoruz." },
+              { icon: <Shield size={40} />, title: "Güvenli Alım", desc: "Hukuki (Tapu/İmar) kontrolleri yapılmış sorunsuz mülkleri portföye ekliyoruz." },
+              { icon: <TrendingUp size={40} />, title: "Değer Katma", desc: "Tarlayı arsaya, arsayı projeye dönüştürerek değer artışı sağlıyoruz." },
+              { icon: <PieChart size={40} />, title: "Kâr Realizasyonu", desc: "Doğru zamanda, en yüksek fiyattan satış yaparak kârı realize ediyoruz." }
+            ].map((step, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:border-yellow-500 transition-all group relative z-10">
+                <div className="bg-slate-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-900 group-hover:bg-yellow-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                  {step.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                
+                {/* Ok işareti (Son eleman hariç) */}
+                {idx !== 3 && (
+                  <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 text-slate-300 z-0">
+                    <ArrowRight size={32} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+     <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
         {/* Arka plan deseni */}
         <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
         
@@ -208,90 +308,97 @@ export default function YatirimPage() {
         </div>
       </section>
 
-      {/* 5. SÜREÇ: NASIL ÇALIŞIR? */}
-      <section className="py-24 bg-white text-slate-900">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-16">Profesyonel Yatırım Yönetimi</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { icon: <Globe size={40} />, title: "Pazar Analizi", desc: "Veriye dayalı analizlerle şehrin en hızlı değerlenen noktalarını tespit ediyoruz." },
-              { icon: <Shield size={40} />, title: "Güvenli Alım", desc: "Hukuki (Tapu/İmar) kontrolleri yapılmış sorunsuz mülkleri portföye ekliyoruz." },
-              { icon: <TrendingUp size={40} />, title: "Değer Katma", desc: "Tarlayı arsaya, arsayı projeye dönüştürerek değer artışı sağlıyoruz." },
-              { icon: <PieChart size={40} />, title: "Kâr Realizasyonu", desc: "Doğru zamanda, en yüksek fiyattan satış yaparak kârı realize ediyoruz." }
-            ].map((step, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl hover:shadow-2xl hover:border-yellow-500 transition-all group relative z-10">
-                <div className="bg-slate-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-900 group-hover:bg-yellow-600 group-hover:text-white transition-all duration-500 shadow-inner">
-                  {step.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-4">{step.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
-                
-                {/* Ok işareti (Son eleman hariç) */}
-                {idx !== 3 && (
-                  <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 text-slate-300 z-0">
-                    <ArrowRight size={32} />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* 6. SİMÜLASYON / ÖRNEK SENARYO */}
-      <section className="py-20 ">
-        <div className="container mx-auto px-6">
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl flex flex-col md:flex-row gap-12 items-center">
-            <div className="md:w-1/2">
-              <h3 className="text-2xl font-bold text-slate-900 mb-4">Örnek Senaryo: Arsa Yatırımı</h3>
-              <p className="text-gray-600 mb-6">
-                2020 yılında Konya Yazır bölgesinden m²'si 200 TL'den alınan 1000m² arsanın bugünkü piyasa değeri analizi.
-              </p>
-              <div className="space-y-4">
-                 <div className="flex justify-between items-center border-b pb-2">
-                    <span className="font-semibold text-gray-500">Başlangıç Yatırımı (2020)</span>
-                    <span className="font-bold text-slate-900">200.000 ₺</span>
-                 </div>
-                 <div className="flex justify-between items-center border-b pb-2">
-                    <span className="font-semibold text-gray-500">Mevcut Değer (2025)</span>
-                    <span className="font-bold text-slate-900">3.500.000 ₺</span>
-                 </div>
-                 <div className="flex justify-between items-center bg-green-50 p-3 rounded-lg">
-                    <span className="font-bold text-green-700">NET KAZANÇ</span>
-                    <span className="font-bold text-green-700 text-xl">%1650 Artış</span>
-                 </div>
-              </div>
-            </div>
-            <div className="md:w-1/2 relative">
-               <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-2xl opacity-20"></div>
-               <div className="relative bg-slate-900 text-white p-8 rounded-2xl text-center transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                  <Landmark size={48} className="mx-auto text-yellow-500 mb-4" />
-                  <p className="text-lg font-light opacity-90">Gayrimenkul, siz uyurken bile sizin için çalışmaya devam eden tek yatırımdır.</p>
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 7. CTA BANNER (Harekete Geçirici Mesaj) */}
-      <section className="py-24 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80')] bg-cover bg-center bg-fixed relative">
-        <div className="absolute inset-0 bg-slate-900/90"></div>
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Geleceğinizi Bugün İnşa Edin</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-xl leading-relaxed">
-            Sınırlı sayıdaki fırsat portföylerimiz ve lansmana özel fiyatlarımız için yatırım danışmanlarımızla iletişime geçin.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-             <Link href="/iletisim" className="bg-yellow-600 text-white px-10 py-4 font-bold rounded-lg hover:bg-yellow-500 transition-all shadow-[0_0_20px_rgba(202,138,4,0.5)] transform hover:scale-105">
-               ÜCRETSİZ DANIŞMANLIK AL
-             </Link>
-             <Link href="/projelerimiz" className="bg-transparent border-2 border-white text-white px-10 py-4 font-bold rounded-lg hover:bg-white hover:text-slate-900 transition-all">
-               GÜNCEL FIRSATLARI GÖR
-             </Link>
+
+      {/* --- PORTFOLYO SEÇİM MODALI (POP-UP) --- */}
+      {isPortfolioModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-[in_0.2s_ease-out_fade-in]">
+          
+          {/* BOKEH EFFECT (Arka Plan Bulanıklığı) */}
+          <div 
+            className="absolute inset-0 bg-slate-900/60 backdrop-blur-md transition-all duration-300"
+            onClick={() => setIsPortfolioModalOpen(false)} // Boşluğa tıklayınca kapat
+          ></div>
+
+          {/* MODAL KUTUSU */}
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl relative z-10 overflow-hidden transform transition-all animate-[in_0.3s_ease-out_zoom-in_slide-in-from-bottom-4]">
+            
+            {/* Modal Header */}
+            <div className="bg-slate-900 text-white p-6 flex justify-between items-center">
+              <h3 className="font-bold text-xl flex items-center gap-2">
+                <Map size={24} className="text-yellow-500" />
+                Portföy Seçimi
+              </h3>
+              <button 
+                onClick={() => setIsPortfolioModalOpen(false)}
+                className="hover:bg-white/20 rounded-full p-2 transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Modal İçerik */}
+            <div className="p-8">
+              <p className="text-center text-gray-500 mb-8">
+                Tüm ilanlarımıza ve güncel fırsatlarımıza aşağıdaki platform mağazalarımızdan ulaşabilirsiniz.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                {/* 1. SAHİBİNDEN BUTONU */}
+                <a 
+                  href={links.sahibinden}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border-2 border-slate-100 hover:border-yellow-400 bg-slate-50 hover:bg-yellow-50 transition-all duration-300"
+                >
+                  <div className="w-24 h-24 relative bg-white rounded-xl shadow-md p-2 flex items-center justify-center overflow-hidden">
+                     {/* LOGO YERİ: Buraya sahibinden logosu gelecek */}
+                     {/* Eğer resim yoksa 'S' harfi gösterir */}
+                     <Image 
+                        src="/Yeni klasör (2)/sahibinden.png" // BURAYA RESİM YOLUNU YAZ
+                        alt="Sahibinden"
+                        fill
+                        className="object-contain"
+                        // Resim yoksa hata vermemesi için fallback bir görünüm sağlarız ama sen logo yükleyince bu çalışır
+                     />
+                  </div>
+                  <div className="text-center">
+                    <h4 className="font-bold text-xl text-slate-800 group-hover:text-yellow-700 transition-colors">SAHİBİNDEN</h4>
+                    <p className="text-xs text-gray-400 mt-1 font-medium tracking-wider">MAĞAZAMIZI ZİYARET ET</p>
+                  </div>
+                </a>
+
+                {/* 2. HEPSİEMLAK BUTONU */}
+                <a 
+                  href={links.hepsiemlak}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border-2 border-slate-100 hover:border-red-500 bg-slate-50 hover:bg-red-50 transition-all duration-300"
+                >
+                  <div className="w-24 h-24 relative bg-white rounded-xl shadow-md p-2 flex items-center justify-center overflow-hidden">
+                      {/* LOGO YERİ: Buraya hepsiemlak logosu gelecek */}
+                       <Image 
+                        src="/Yeni klasör (2)/hepsiemlak.png" // BURAYA RESİM YOLUNU YAZ
+                        alt="Hepsiemlak"
+                        fill
+                        className="object-contain"
+                     />
+                  </div>
+                  <div className="text-center">
+                    <h4 className="font-bold text-xl text-slate-800 group-hover:text-red-600 transition-colors">HEPSİEMLAK</h4>
+                    <p className="text-xs text-gray-400 mt-1 font-medium tracking-wider">PORTFÖYÜMÜZÜ İNCELE</p>
+                  </div>
+                </a>
+
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      )}
+
     </main>
   );
 }
