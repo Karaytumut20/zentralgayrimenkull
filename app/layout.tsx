@@ -4,7 +4,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header"; 
 import Footer from "@/components/Footer"; 
-import FloatingSocials from "@/components/FloatingSocials"; // <--- 1. BİLEŞEN IMPORT EDİLDİ
+import FloatingSocials from "@/components/FloatingSocials"; 
 
 const montserrat = Montserrat({ 
   subsets: ["latin"],
@@ -13,8 +13,50 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Zentral Gayrimenkul Yatırım",
-  description: "Global gayrimenkul ve inşaat projeleri.",
+  // ÖNEMLİ: Buraya sitenizin gerçek alan adını yazmalısınız
+  metadataBase: new URL('https://www.zentralgayrimenkul.com'), 
+  
+  title: {
+    default: 'Zentral Gayrimenkul Yatırım',
+    template: '%s | Zentral Gayrimenkul' // Alt sayfalarda "İletişim | Zentral Gayrimenkul" gibi görünür
+  },
+  description: "Konya ve Ankara'da sanayi arsaları, lüks konut projeleri, ticari gayrimenkul yatırımları ve global danışmanlık hizmetleri.",
+  keywords: ['Konya Emlak', 'Sanayi Arsası', 'Konut Projeleri', 'Yatırım Danışmanlığı', 'Zentral Gayrimenkul', 'Ankara Ofis', 'Satılık Arsa', 'Kiralık Dükkan', 'Gayrimenkul Yatırımı', 'emlakçı'],
+  authors: [{ name: 'Zentral Gayrimenkul' }],
+  creator: 'Zentral Gayrimenkul',
+  
+  // Sosyal Medya Paylaşımları (Open Graph)
+  openGraph: {
+    type: 'website',
+    locale: 'tr_TR',
+    url: '/',
+    title: 'Zentral Gayrimenkul - Geleceği İnşa Ediyoruz',
+    description: 'Yatırımlarınıza değer katan, güvenilir çözüm ortağınız.',
+    siteName: 'Zentral Gayrimenkul',
+    images: [
+      {
+        url: '/public/Yeni klasör (2)/android-icon-192x192.png', // Public klasörüne 1200x630px boyutunda bir kapak resmi eklemeniz önerilir
+        width: 1200,
+        height: 630,
+        alt: 'Zentral Gayrimenkul Yatırım',
+      },
+    ],
+  },
+  
+  // Twitter Kartları
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Zentral Gayrimenkul Yatırım',
+    description: 'Konya ve Ankara merkezli gayrimenkul yatırım uzmanlığı.',
+    images: ['/favicon.ico'], // Yukarıdaki aynı görseli kullanır
+  },
+
+  // İkon Ayarları
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-icon.png',
+    shortcut: '/favicon-16x16.png',
+  },
 };
 
 export default function RootLayout({
@@ -26,9 +68,8 @@ export default function RootLayout({
     <html lang="tr">
       <body className={`${montserrat.className} antialiased bg-white relative`}>
         
-        {/* 2. INLINE CSS (ANIMASYON İÇİN)
-            Sahibinden butonundaki parıltı efektinin çalışması için 
-            gerekli animasyon kodunu buraya ekledik. Config dosyasıyla uğraşmanıza gerek yok.
+        {/* INLINE CSS (ANIMASYON İÇİN)
+            Sahibinden butonundaki parıltı efektinin çalışması için gerekli.
         */}
         <style>{`
           @keyframes shimmer {
@@ -38,7 +79,7 @@ export default function RootLayout({
 
         <Header />
         
-        {/* 3. BİLEŞEN EKLENDİ (Her sayfada sağda sabit duracak) */}
+        {/* Her sayfada sağda sabit duracak sosyal medya menüsü */}
         <FloatingSocials />
         
         {children}
