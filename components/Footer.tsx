@@ -20,16 +20,21 @@ export default function Footer() {
     { name: "İletişim", href: "/iletisim" },
   ];
 
+  // GÜNCELLENEN FAALİYET LİNKLERİ
   const activityLinks = [
-    { name: "Sanayi Arsaları", href: "/yatirim" },
+    { name: "Site Yönetimi", href: "/yatirim" },
+    { name: "Gayrimenkul Satış İşlemleri", href: "/yatirim" },
+    { name: "Gayrimenkul Takibi", href: "/yatirim" },
+    { name: "Villa Satışı", href: "/yatirim" },
+    { name: "Fabrika Satışı", href: "/yatirim" },
     { name: "Arsa Geliştirme", href: "/yatirim" },
-    { name: "Yurtdışı Yatırım", href: "/yatirim" },
+    { name: "Kiralama Yönetimi", href: "/yatirim" },
     { name: "Yatırım Danışmanlığı", href: "/yatirim" },
   ];
 
   const mapLinkKonya =
     "https://www.google.com/maps/place/Kumk%C3%B6pr%C3%BC,+K%C3%BC%C3%A7%C3%BCk+Kumk%C3%B6pr%C3%BC+Cd.+No:176,+42020+Karatay%2FKonya/@37.8509109,32.5291451,17z/data=!3m1!4b1!4m6!3m5!1s0x14d084d608e11d51:0x2253040cf55190e1!8m2!3d37.8509067!4d32.53172!16s%2Fg%2F11c2fn1wp3?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D"; // Konya Harita Linki
-  // Ankara için temsili harita linki (Gerekirse güncelleyebilirsin)
+  // Ankara için temsili harita linki
   const mapLinkAnkara =
     "https://maps.google.com/?q=Ehlibeyt+Mahallesi+Ceyhun+Atuf+Kansu+Caddesi+No:100A/1238+Cankaya+Ankara";
   const yetkiBelgesiPdfYolu = "/YetkiBelgesi.pdf";
@@ -204,7 +209,7 @@ export default function Footer() {
                   className="flex items-center gap-2 hover:text-yellow-500 transition-colors pl-0.5"
                 >
                   <Mail className="text-gray-500 shrink-0" size={14} />
-                  <span className="truncate">Zentralankara@gmail.com</span>
+                  <span className="truncate">zentralankara@gmail.com</span>
                 </a>
               </div>
             </div>
@@ -225,9 +230,6 @@ export default function Footer() {
                 <div>
                   <div className="text-[11px] font-bold text-gray-300 group-hover:text-white">
                     Semih Bahadır Kahraman
-                  </div>
-                  <div className="text-[9px] text-yellow-600/80 font-mono tracking-wide">
-                    Belge No: 4202217
                   </div>
                 </div>
               </div>

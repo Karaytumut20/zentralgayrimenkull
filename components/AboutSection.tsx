@@ -1,7 +1,7 @@
 // components/AboutSection.tsx
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight, Target, Award } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Target, Award } from "lucide-react";
 
 export default function AboutSection() {
   return (
@@ -11,7 +11,6 @@ export default function AboutSection() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          
           {/* GÖRSEL ALANI: Üst üste binmiş resimler efekti */}
           <div className="w-full lg:w-1/2 relative">
             {/* Ana Resim */}
@@ -28,12 +27,15 @@ export default function AboutSection() {
               <div className="flex items-center gap-4 mb-4">
                 <Award className="text-yellow-500" size={40} />
                 <div>
-                  <p className="text-3xl font-bold text-white">25 Yıl</p>
-                  <p className="text-gray-400 text-xs uppercase tracking-widest">Sektör Deneyimi</p>
+                  <p className="text-3xl font-bold text-white"> 7+ Yıl</p>
+                  <p className="text-gray-400 text-xs uppercase tracking-widest">
+                    Sektör Deneyimi
+                  </p>
                 </div>
               </div>
               <p className="text-gray-300 text-sm italic">
-                Güven inşa etmek, bina inşa etmekten daha zordur. Biz zoru seçtik.
+                Güven inşa etmek, bina inşa etmekten daha zordur. Biz zoru
+                seçtik.
               </p>
             </div>
           </div>
@@ -42,41 +44,62 @@ export default function AboutSection() {
           <div className="w-full lg:w-1/2">
             <div className="flex items-center gap-2 mb-4">
               <span className="h-0.5 w-10 bg-yellow-600"></span>
-              <span className="text-yellow-600 font-bold tracking-[0.2em] text-sm uppercase">Hakkımızda</span>
+              <span className="text-yellow-600 font-bold tracking-[0.2em] text-sm uppercase">
+                Hakkımızda
+              </span>
             </div>
-            
+
             <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-6 leading-[1.15]">
               Değer Yaratan <br />
               <span className="text-slate-700">Yatırım Stratejileri</span>
             </h2>
-            
+
             <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
-              Zentral, gayrimenkul geliştirme ve yatırım alanında Türkiye nin önde gelen kuruluşlarından biridir. Sadece metrekare değil, yaşam kalitesi ve yüksek yatırım geri dönüşü (ROI) üretiyoruz.
+              Bugüne kadar 1.000’in üzerinde kiralama ve 500’den fazla satış
+              işlemini başarıyla tamamladık. Binlerce memnun müşterimizle,
+              güvene dayalı ve profesyonel emlak hizmeti sunmaya devam ediyoruz.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
               <div className="flex gap-4">
-                <div className="bg-yellow-50 p-3 h-fit rounded-sm"><Target className="text-yellow-600" size={24} /></div>
+                <div className="bg-yellow-50 p-3 h-fit rounded-sm">
+                  <Target className="text-yellow-600" size={24} />
+                </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 mb-1">Stratejik Konumlar</h4>
-                  <p className="text-sm text-gray-500">Geleceğin parlayan bölgelerinde arsa ve proje yatırımları.</p>
+                  <h4 className="font-bold text-slate-900 mb-1">
+                    Stratejik Konumlar
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    Geleceğin parlayan bölgelerinde arsa ve proje yatırımları.
+                  </p>
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="bg-yellow-50 p-3 h-fit rounded-sm"><Award className="text-yellow-600" size={24} /></div>
+                <div className="bg-yellow-50 p-3 h-fit rounded-sm">
+                  <Award className="text-yellow-600" size={24} />
+                </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 mb-1">Yüksek Getiri</h4>
-                  <p className="text-sm text-gray-500">Döviz endeksli kira ve değer artış garantili sistemler.</p>
+                  <h4 className="font-bold text-slate-900 mb-1">
+                    Yüksek Getiri
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    Döviz endeksli kira ve değer artış garantili sistemler.
+                  </p>
                 </div>
               </div>
             </div>
 
-            <Link href="/kurumsal" className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-yellow-600 transition-colors rounded-sm group">
+            <Link
+              href="/kurumsal"
+              className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-yellow-600 transition-colors rounded-sm group"
+            >
               Şirket Profilimiz
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
+              <ArrowRight
+                size={18}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </Link>
           </div>
-
         </div>
       </div>
     </section>
