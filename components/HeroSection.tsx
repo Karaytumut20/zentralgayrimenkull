@@ -2,8 +2,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion"; // Variants eklendi
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Link from "next/link";
+
+// --- TİP TANIMLAMALARI (HATA ÇÖZÜMÜ) ---
+interface HeroItem {
+  tr: string;
+  en: string;
+  isCta?: boolean; // İsteğe bağlı özellik
+  href?: string; // İsteğe bağlı özellik
+}
+
+interface Scene {
+  title: { tr: string; en: string };
+  items: HeroItem[];
+}
 
 // --- VERİ YAPISI ---
 
@@ -15,7 +28,7 @@ const sloganData = [
 ];
 
 // Sahne 1: Yönetim ve Prensipler
-const scene1 = {
+const scene1: Scene = {
   title: { tr: "YÖNETİM ANLAYIŞIMIZ", en: "OUR MANAGEMENT APPROACH" },
   items: [
     { tr: "Doğru Yönetim", en: "Correct Management" },
@@ -31,7 +44,7 @@ const scene1 = {
 };
 
 // Sahne 2: Hizmetler ve Operasyon
-const scene2 = {
+const scene2: Scene = {
   title: { tr: "PROFESYONEL HİZMETLER", en: "PROFESSIONAL SERVICES" },
   items: [
     { tr: "Alım, Satım & Kiralama", en: "Buying, Selling & Renting" },
@@ -44,7 +57,7 @@ const scene2 = {
 };
 
 // Sahne 3: Felsefe ve Kapanış (CTA)
-const scene3 = {
+const scene3: Scene = {
   title: { tr: "SİZİN İÇİN BURADAYIZ", en: "HERE FOR YOU" },
   items: [
     { tr: "Dinleriz & Anlarız", en: "We Listen & Understand" },
@@ -57,7 +70,6 @@ const scene3 = {
 };
 
 // --- ANİMASYON AYARLARI ---
-// HATA ÇÖZÜMÜ: Variants tipi açıkça belirtildi
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -77,7 +89,6 @@ const containerVariants: Variants = {
   },
 };
 
-// HATA ÇÖZÜMÜ: Variants tipi açıkça belirtildi
 const itemVariants: Variants = {
   hidden: { y: 30, opacity: 0, filter: "blur(5px)" },
   visible: {
@@ -196,7 +207,11 @@ export default function HeroSection() {
                   <motion.div
                     key={idx}
                     variants={itemVariants}
-                    className={`flex flex-col ${idx % 2 === 0 ? "md:text-right items-center md:items-end" : "md:text-left items-center md:items-start"} text-center`}
+                    className={`flex flex-col ${
+                      idx % 2 === 0
+                        ? "md:text-right items-center md:items-end"
+                        : "md:text-left items-center md:items-start"
+                    } text-center`}
                   >
                     {item.isCta ? (
                       // Buton Görünümü (Aktif Link)
