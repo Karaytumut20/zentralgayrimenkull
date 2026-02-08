@@ -2,8 +2,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link"; // Link eklendi
+import { motion, AnimatePresence, Variants } from "framer-motion"; // Variants eklendi
+import Link from "next/link";
 
 // --- VERİ YAPISI ---
 
@@ -51,13 +51,14 @@ const scene3 = {
     { tr: "Yönlendiririz", en: "We Guide" },
     { tr: "Gerçek Değer", en: "Real Value" },
     { tr: "Güvenli İşlem", en: "Secure Deal" },
-    { tr: "BİLGİ ALIN", en: "GET INFORMATION", isCta: true, href: "/iletisim" }, // Link eklendi
-    { tr: "BİZE ULAŞIN", en: "CONTACT US", isCta: true, href: "/iletisim" }, // Link eklendi
+    { tr: "BİLGİ ALIN", en: "GET INFORMATION", isCta: true, href: "/iletisim" },
+    { tr: "BİZE ULAŞIN", en: "CONTACT US", isCta: true, href: "/iletisim" },
   ],
 };
 
 // --- ANİMASYON AYARLARI ---
-const containerVariants = {
+// HATA ÇÖZÜMÜ: Variants tipi açıkça belirtildi
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -76,7 +77,8 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+// HATA ÇÖZÜMÜ: Variants tipi açıkça belirtildi
+const itemVariants: Variants = {
   hidden: { y: 30, opacity: 0, filter: "blur(5px)" },
   visible: {
     y: 0,
@@ -97,7 +99,6 @@ export default function HeroSection() {
 
   useEffect(() => {
     // Sahnelerin ekranda kalma süreleri (milisaniye)
-    // Son sahne (index 3) süresi 10 saniyeye (10000ms) çıkarıldı.
     const durations = [3500, 6000, 6000, 10000];
 
     const timer = setTimeout(() => {
