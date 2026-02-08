@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Link from "next/link";
 
-// --- TİP TANIMLAMALARI (HATA ÇÖZÜMÜ) ---
+// --- TİP TANIMLAMALARI ---
 interface HeroItem {
   tr: string;
   en: string;
-  isCta?: boolean; // İsteğe bağlı özellik
-  href?: string; // İsteğe bağlı özellik
+  isCta?: boolean;
+  href?: string;
 }
 
 interface Scene {
@@ -64,6 +64,7 @@ const scene3: Scene = {
     { tr: "Yönlendiririz", en: "We Guide" },
     { tr: "Gerçek Değer", en: "Real Value" },
     { tr: "Güvenli İşlem", en: "Secure Deal" },
+    // CTA butonları isCta: true ile işaretlendi
     { tr: "BİLGİ ALIN", en: "GET INFORMATION", isCta: true, href: "/iletisim" },
     { tr: "BİZE ULAŞIN", en: "CONTACT US", isCta: true, href: "/iletisim" },
   ],
@@ -109,8 +110,8 @@ export default function HeroSection() {
   const [activeStage, setActiveStage] = useState(0);
 
   useEffect(() => {
-    // Sahnelerin ekranda kalma süreleri (milisaniye)
-    const durations = [3500, 6000, 6000, 10000];
+    // SÜRELER (Milisaniye)
+    const durations = [6000, 10000, 10000, 15000];
 
     const timer = setTimeout(() => {
       setActiveStage((prev) => (prev + 1) % 4);
@@ -207,17 +208,13 @@ export default function HeroSection() {
                   <motion.div
                     key={idx}
                     variants={itemVariants}
-                    className={`flex flex-col ${
-                      idx % 2 === 0
-                        ? "md:text-right items-center md:items-end"
-                        : "md:text-left items-center md:items-start"
-                    } text-center`}
+                    className={`flex flex-col ${idx % 2 === 0 ? "md:text-right items-center md:items-end" : "md:text-left items-center md:items-start"} text-center`}
                   >
                     {item.isCta ? (
-                      // Buton Görünümü (Aktif Link)
+                      // --- GÜNCELLENEN BUTON TASARIMI ---
                       <Link
                         href={item.href || "/iletisim"}
-                        className="mt-4 inline-block bg-[#D4AF37] text-[#051328] px-8 py-4 rounded-sm font-bold text-lg hover:bg-white transition-colors shadow-[0_0_15px_rgba(212,175,55,0.4)] cursor-pointer"
+                        className="mt-6 inline-block bg-[#D4AF37] text-[#051328] px-10 py-4 rounded-md font-extrabold text-xl border-2 border-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.5)] hover:bg-white hover:text-[#D4AF37] hover:border-white hover:shadow-[0_0_40px_rgba(212,175,55,0.7)] hover:scale-105 transition-all duration-300 cursor-pointer"
                       >
                         <span className="block">{item.tr}</span>
                         <span className="block text-xs opacity-70 font-normal mt-1">
