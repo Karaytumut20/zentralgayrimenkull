@@ -1,8 +1,6 @@
-// components/LatestProjects.tsx
 import Image from 'next/image';
 import { MapPin, ArrowUpRight, ExternalLink, Building2, Factory, Gem, Sparkles } from 'lucide-react';
 
-// Kategori verileri - Etkileyici görseller ve başlıklar
 const categories = [
   {
     id: 1,
@@ -11,7 +9,7 @@ const categories = [
     location: "Konya OSB & Gelişim Aksları",
     count: "18+ Fırsat Dosyası",
     icon: <Factory size={28} />,
-    image: "https://images.unsplash.com/photo-1565793979206-10951493332d?q=80&w=1000" // Etkileyici bir sanayi/antrepo görseli
+    image: "https://images.unsplash.com/photo-1565793979206-10951493332d?q=80&w=1000"
   },
   {
     id: 2,
@@ -20,7 +18,7 @@ const categories = [
     location: "Meram, Yaka & Selçuklu",
     count: "25+ Özel Portföy",
     icon: <Gem size={28} />,
-    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000" // Lüks havuzlu villa görseli
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1000"
   },
   {
     id: 3,
@@ -29,29 +27,25 @@ const categories = [
     location: "Konya Finans Merkezi",
     count: "12+ Ticari Ünite",
     icon: <Building2 size={28} />,
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000" // Modern plaza görseli
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000"
   }
 ];
 
 export default function LatestProjects() {
-  // BURAYA KENDİ SAHİBİNDEN MAĞAZA LİNKİNİZİ YAPIŞTIRIN
-  const SAHIBINDEN_LINK = "https://www.sahibinden.com"; 
+  // SAHİBİNDEN MAĞAZA LİNKİNİZ BURADA GÜNCELLENDİ
+  const SAHIBINDEN_LINK = "https://zentralgayrimenkul.sahibinden.com/";
 
   return (
     <section className="py-28 bg-[#0B0F19] text-white relative overflow-hidden">
-      
-      {/* ARKAPLAN EFEKTLERİ (Göz Doyuran Kısımlar) */}
-      {/* 1. Devasa Silik Yazı */}
+
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12rem] font-extrabold text-slate-800/20 pointer-events-none select-none whitespace-nowrap z-0">
         PREMIUM PORTFOLIO
       </div>
-      {/* 2. Bulanık Işık Topları */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-yellow-600/30 rounded-full blur-[180px] pointer-events-none z-0"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/40 rounded-full blur-[180px] pointer-events-none z-0"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        
-        {/* BAŞLIK VE GİRİŞ KISMI */}
+
         <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-10">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
@@ -74,10 +68,9 @@ export default function LatestProjects() {
             </p>
           </div>
 
-          {/* MASAÜSTÜ SAHİBİNDEN BUTONU (Dikkat Çekici) */}
           <div className="hidden lg:block relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-lg blur-xl opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-            <a 
+            <a
               href={SAHIBINDEN_LINK}
               target="_blank"
               rel="noopener noreferrer"
@@ -89,38 +82,30 @@ export default function LatestProjects() {
           </div>
         </div>
 
-        {/* KARTLAR (Göz Alıcı Kısım) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {categories.map((cat) => (
-            <a 
-              key={cat.id} 
+            <a
+              key={cat.id}
               href={SAHIBINDEN_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative h-[550px] rounded-[2rem] overflow-hidden cursor-pointer perspective-1000"
             >
-              {/* NEON GLOW BORDER EFEKTİ (Hoverda Çıkan Çerçeve) */}
               <div className="absolute -inset-[2px] bg-gradient-to-r from-yellow-500 via-white to-yellow-500 rounded-[2rem] opacity-0 group-hover:opacity-100 blur-md transition-all duration-500 z-0"></div>
-              
-              {/* KARTIN KENDİSİ */}
+
               <div className="relative h-full w-full bg-slate-900 rounded-[2rem] overflow-hidden z-10 border border-slate-800 group-hover:border-transparent transition-colors">
-                {/* Resim */}
                 <Image
                   src={cat.image}
                   alt={cat.title}
                   fill
                   className="object-cover transition-transform duration-[1.5s] group-hover:scale-110 group-hover:rotate-1"
                 />
-                
-                {/* Koyu ve Renkli Overlayler */}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/80 to-transparent opacity-90"></div>
-                {/* Hoverda çıkan spot ışığı efekti */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-600/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 mix-blend-overlay"></div>
 
-                {/* İçerik */}
                 <div className="absolute top-0 left-0 w-full h-full p-8 flex flex-col justify-between">
-                  
-                  {/* Üst Kısım: İkon ve Sayaç */}
+
                   <div className="flex justify-between items-start transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                     <div className="bg-yellow-500/20 backdrop-blur-md text-yellow-400 p-4 rounded-2xl shadow-[0_0_20px_rgba(234,179,8,0.2)]">
                       {cat.icon}
@@ -134,19 +119,16 @@ export default function LatestProjects() {
                     </div>
                   </div>
 
-                  {/* Alt Kısım: Başlıklar ve Buton */}
                   <div className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-500">
                      <h3 className="text-3xl font-extrabold mb-2 text-white group-hover:text-yellow-400 transition-colors">{cat.title}</h3>
                      <p className="text-slate-300 text-lg mb-6 opacity-90">{cat.subtitle}</p>
-                     
-                     {/* Lokasyon ve Buton */}
+
                      <div className="flex items-center justify-between border-t border-slate-700/50 pt-6 group-hover:border-yellow-500/30">
                         <div className="flex items-center text-slate-400 text-sm font-medium">
                            <MapPin size={18} className="mr-2 text-yellow-500" />
                            {cat.location}
                         </div>
-                        
-                        {/* Hoverda çıkan "İncele" butonu */}
+
                         <div className="flex items-center gap-2 text-yellow-400 font-bold uppercase tracking-wider opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 delay-200">
                            İncele <ArrowUpRight size={20} className="bg-yellow-400/20 rounded-full p-1" />
                         </div>
@@ -157,11 +139,10 @@ export default function LatestProjects() {
             </a>
           ))}
         </div>
-        
-        {/* MOBİL BUTON (Sadece mobilde görünür, o da cafcaflı) */}
+
         <div className="mt-16 md:hidden relative group">
             <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg blur opacity-75 animate-pulse group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-            <a 
+            <a
               href={SAHIBINDEN_LINK}
               target="_blank"
               rel="noopener noreferrer"

@@ -2,9 +2,13 @@
 import Link from "next/link";
 import {
   Phone,
+  Smartphone,
   Mail,
   MapPin,
   Instagram,
+  Twitter,
+  Facebook,
+  Linkedin,
   ChevronRight,
   ShieldCheck,
   Download,
@@ -20,7 +24,6 @@ export default function Footer() {
     { name: "İletişim", href: "/iletisim" },
   ];
 
-  // GÜNCELLENEN FAALİYET LİNKLERİ
   const activityLinks = [
     { name: "Site Yönetimi", href: "/yatirim" },
     { name: "Gayrimenkul Satış İşlemleri", href: "/yatirim" },
@@ -33,11 +36,19 @@ export default function Footer() {
   ];
 
   const mapLinkKonya =
-    "https://www.google.com/maps/place/Kumk%C3%B6pr%C3%BC,+K%C3%BC%C3%A7%C3%BCk+Kumk%C3%B6pr%C3%BC+Cd.+No:176,+42020+Karatay%2FKonya/@37.8509109,32.5291451,17z/data=!3m1!4b1!4m6!3m5!1s0x14d084d608e11d51:0x2253040cf55190e1!8m2!3d37.8509067!4d32.53172!16s%2Fg%2F11c2fn1wp3?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D"; // Konya Harita Linki
-  // Ankara için temsili harita linki
+    "https://www.google.com/maps/place/Kumk%C3%B6pr%C3%BC,+K%C3%BC%C3%A7%C3%BCk+Kumk%C3%B6pr%C3%BC+Cd.+No:176,+42020+Karatay%2FKonya/@37.8509109,32.5291451,17z/data=!3m1!4b1!4m6!3m5!1s0x14d084d608e11d51:0x2253040cf55190e1!8m2!3d37.8509067!4d32.53172!16s%2Fg%2F11c2fn1wp3?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D";
   const mapLinkAnkara =
     "https://maps.google.com/?q=Ehlibeyt+Mahallesi+Ceyhun+Atuf+Kansu+Caddesi+No:100A/1238+Cankaya+Ankara";
   const yetkiBelgesiPdfYolu = "/YetkiBelgesi.pdf";
+
+  // Sosyal Medya Linklerinizi buradan güncelleyebilirsiniz
+  const socialLinks = {
+    instagram:
+      "https://www.instagram.com/zentral.gayrimenkul?igsh=N3VpMGVzdGdmNWFq&utm_source=qr",
+    x_twitter: "https://twitter.com/zentralgayrimenkul",
+    facebook: "https://facebook.com/zentralgayrimenkul",
+    linkedin: "https://linkedin.com/company/zentralgayrimenkul",
+  };
 
   return (
     <footer className="bg-[#0b1120] text-gray-300 border-t border-gray-800 font-sans">
@@ -56,22 +67,50 @@ export default function Footer() {
                   className="object-contain object-left"
                 />
               </Link>
-              <p className="text-xs text-gray-400 mb-4 max-w-xs leading-relaxed">
+              <p className="text-xs text-gray-400 mb-6 max-w-xs leading-relaxed">
                 7 yıllık tecrübe ile değer üreten, Konya ve Ankara merkezli
                 gayrimenkul projeleri.
               </p>
             </div>
 
-            {/* Sosyal Medya */}
-            <div>
+            {/* Sosyal Medya İkonları (YENİ) */}
+            <div className="flex items-center gap-3">
               <a
-                href="https://www.instagram.com/zentral.gayrimenkul?igsh=N3VpMGVzdGdmNWFq&utm_source=qr"
-                className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-yellow-500 transition-colors"
+                href={socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"
+                aria-label="Instagram"
               >
-                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-yellow-600 transition-all">
-                  <Instagram size={16} />
-                </div>
-                <span>Instagram'da Takip Et</span>
+                <Instagram size={16} />
+              </a>
+              <a
+                href={socialLinks.x_twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"
+                aria-label="X (Twitter)"
+              >
+                <Twitter size={16} />{" "}
+                {/* Lucide'de X logosu Twitter olarak geçer */}
+              </a>
+              <a
+                href={socialLinks.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"
+                aria-label="Facebook"
+              >
+                <Facebook size={16} />
+              </a>
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={16} />
               </a>
             </div>
           </div>
@@ -134,7 +173,7 @@ export default function Footer() {
             {/* İletişim Grid: Yan yana iki ofis */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* KONYA OFİS */}
-              <div className="space-y-2 text-[11px]">
+              <div className="space-y-3 text-[11px]">
                 <h4 className="text-yellow-600 font-bold text-xs uppercase tracking-wide">
                   Konya Ofis
                 </h4>
@@ -152,20 +191,25 @@ export default function Footer() {
                     Kumköprü Mah. Küçükkumköprü Cad. No:176DC Karatay/Konya
                   </span>
                 </a>
-                <div className="flex flex-col gap-1 pl-6">
+
+                {/* Konya Telefonları (YENİ İKONLAR) */}
+                <div className="flex flex-col gap-2 pl-6">
                   <a
                     href="tel:03322338042"
-                    className="hover:text-yellow-500 transition-colors"
+                    className="flex items-center gap-2 hover:text-yellow-500 transition-colors"
                   >
-                    0332 233 80 42
+                    <Phone size={14} className="text-gray-500" />
+                    <span>0332 233 80 42</span>
                   </a>
                   <a
                     href="tel:05013338042"
-                    className="hover:text-yellow-500 transition-colors"
+                    className="flex items-center gap-2 hover:text-yellow-500 transition-colors"
                   >
-                    0501 333 80 42
+                    <Smartphone size={14} className="text-gray-500" />
+                    <span>0501 333 80 42</span>
                   </a>
                 </div>
+
                 <a
                   href="mailto:zentralgayrimenkul@gmail.com"
                   className="flex items-center gap-2 hover:text-yellow-500 transition-colors pl-0.5"
@@ -176,7 +220,7 @@ export default function Footer() {
               </div>
 
               {/* ANKARA OFİS */}
-              <div className="space-y-2 text-[11px] sm:border-l sm:border-gray-800 sm:pl-4">
+              <div className="space-y-3 text-[11px] sm:border-l sm:border-gray-800 sm:pl-4">
                 <h4 className="text-yellow-600 font-bold text-xs uppercase tracking-wide">
                   Ankara Ofis
                 </h4>
@@ -195,15 +239,19 @@ export default function Footer() {
                     Çankaya/Ankara
                   </span>
                 </a>
-                <div className="flex flex-col gap-1 pl-6">
+
+                {/* Ankara Telefonları (YENİ İKONLAR) */}
+                <div className="flex flex-col gap-2 pl-6">
                   {/* Ahmet Okkalı'nın numarası */}
                   <a
                     href="tel:05323991663"
-                    className="hover:text-yellow-500 transition-colors"
+                    className="flex items-center gap-2 hover:text-yellow-500 transition-colors"
                   >
-                    0532 399 1663
+                    <Smartphone size={14} className="text-gray-500" />
+                    <span>0532 399 1663</span>
                   </a>
                 </div>
+
                 <a
                   href="mailto:Zentralankara@gmail.com"
                   className="flex items-center gap-2 hover:text-yellow-500 transition-colors pl-0.5"

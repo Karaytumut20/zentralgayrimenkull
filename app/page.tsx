@@ -1,8 +1,8 @@
-// app/page.tsx
 import HeroSection from '@/components/HeroSection';
 import ServiceSection from '@/components/ServiceSection';
 import AboutSection from '@/components/AboutSection';
-// LatestProjects importu kaldırıldı
+import LatestProjects from '@/components/LatestProjects';
+import CtaSection from '@/components/CtaSection';
 
 export default function Home() {
   return (
@@ -10,10 +10,8 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ServiceSection />
-      
-      
-
-      {/* LatestProjects (Projeler) bölümü tamamen kaldırıldı */}
+      <LatestProjects />
+      <CtaSection />
     </main>
   );
 }
