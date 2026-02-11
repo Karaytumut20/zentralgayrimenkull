@@ -3,8 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { ChevronRight, Building2, ShieldCheck, Globe } from "lucide-react";
+import { Building2, ShieldCheck, Globe } from "lucide-react";
 
 // --- VERİ YAPISI (Sadeleştirildi) ---
 const slides = [
@@ -116,9 +115,7 @@ export default function HeroSection() {
     <section className="relative min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#051328]">
       {/* 1. ARKAPLAN VIDEO & OVERLAY (Aydınlatıldı) */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-        {/* Karartma katmanı çok daha şeffaf hale getirildi */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#051328]/70 via-[#051328]/20 to-[#051328]/80 lg:bg-gradient-to-r lg:from-[#051328]/90 lg:via-[#051328]/30 lg:to-transparent z-10"></div>
-        {/* Videonun opaklığı (opacity) artırıldı, artık çok daha canlı */}
         <video
           autoPlay
           loop
@@ -135,7 +132,7 @@ export default function HeroSection() {
 
       {/* 2. İÇERİK ALANI */}
       <div className="container mx-auto px-4 sm:px-6 relative z-20 h-full flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-24 pt-28 pb-12 lg:py-0">
-        {/* SOL TARAF: SABİT BAŞLIK */}
+        {/* SOL TARAF: SABİT BAŞLIK (Butonlar Kaldırıldı, Sadece Etkileyici Metin) */}
         <div className="lg:w-1/2 text-white animate-in slide-in-from-left duration-1000 text-center lg:text-left pointer-events-none">
           <div className="flex items-center justify-center lg:justify-start gap-3 mb-4 lg:mb-6">
             <div className="h-[2px] w-8 lg:w-12 bg-[#D4AF37]"></div>
@@ -151,30 +148,11 @@ export default function HeroSection() {
             </span>
           </h1>
 
-          <p className="text-gray-200 text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8 lg:mb-10 font-light drop-shadow-md">
+          <p className="text-gray-200 text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 font-light drop-shadow-md">
             Yatırımlarınızı şansa bırakmayın. 7 yılı aşkın tecrübe, kurumsal
             yapı ve şeffaf yönetim anlayışıyla geleceğinizi birlikte inşa
             ediyoruz.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto pointer-events-auto">
-            <Link
-              href="/iletisim"
-              className="w-full sm:w-auto group flex items-center justify-center gap-3 bg-[#D4AF37] text-[#051328] px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-white transition-all duration-300 rounded-sm shadow-lg shadow-yellow-900/20"
-            >
-              Bize Ulaşın
-              <ChevronRight
-                size={18}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-            <Link
-              href="/yatirim"
-              className="w-full sm:w-auto group flex items-center justify-center gap-3 border border-white/30 bg-black/20 backdrop-blur-sm text-white px-8 py-4 text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-[#051328] transition-all duration-300 rounded-sm"
-            >
-              Fırsatları İncele
-            </Link>
-          </div>
         </div>
 
         {/* SAĞ TARAF: DEĞİŞEN BİLGİ KARTI */}
@@ -207,7 +185,7 @@ export default function HeroSection() {
                 }}
                 className="absolute inset-0"
               >
-                {/* Glassmorphism Kart (Sadeleştirildi) */}
+                {/* Glassmorphism Kart */}
                 <div className="bg-slate-900/50 lg:bg-[#051328]/30 backdrop-blur-xl border border-white/10 p-8 lg:p-10 rounded-xl lg:rounded-sm h-full flex flex-col justify-center relative shadow-2xl select-none">
                   {/* Kategori Başlığı */}
                   <div className="flex items-center gap-3 lg:gap-4 mb-4 lg:mb-6 border-b border-white/10 pb-4">
@@ -224,7 +202,7 @@ export default function HeroSection() {
                     {slides[currentSlide].description}
                   </p>
 
-                  {/* Etiketler (Tags) - Rahatlatıldı ve alt alta dizildi */}
+                  {/* Etiketler (Tags) */}
                   <div className="flex flex-col gap-3 pointer-events-none mt-2">
                     {slides[currentSlide].tags.map((tag, idx) => (
                       <div
