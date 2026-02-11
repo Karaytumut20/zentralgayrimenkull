@@ -2,14 +2,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { ArrowRight, Factory, Building2, Map, Globe, X, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Factory, Building2, Map, Globe, X, CheckCircle2, LucideIcon } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
+
+// TİP TANIMLAMASI BURAYA EKLENDİ (Hatayı Çözen Kısım)
+interface ServiceItem {
+  id: string;
+  title: string;
+  desc: string;
+  image: string;
+  icon: LucideIcon;
+  longDescription: React.ReactNode;
+}
 
 export default function ServiceSection() {
   const { lang } = useLanguage();
-  const [activeService, setActiveService] = useState(null);
 
-  const services = [
+  // STATE TİPİ BURADA BELİRTİLDİ (<ServiceItem | null>)
+  const [activeService, setActiveService] = useState<ServiceItem | null>(null);
+
+  const services: ServiceItem[] = [
     {
       id: "01",
       title: lang === 'tr' ? "SANAYİ & LOJİSTİK" : "INDUSTRY & LOGISTICS",
