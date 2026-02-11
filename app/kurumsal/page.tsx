@@ -1,27 +1,13 @@
-// app/kurumsal/page.tsx
 "use client";
 
 import React, { useState } from "react";
 import PageBanner from "@/components/PageBanner";
-// components/AboutSection importunu kaldırdım çünkü aşağıda benzer bir yapı zaten var,
-// eğer AboutSection.tsx'i de kullanacaksan oradaki paddingleri de düzeltmen gerekir.
-// Bu sayfadaki özel bölümleri responsive yaptım.
 import Link from "next/link";
-import {
-  ShieldCheck,
-  Users,
-  Target,
-  Building2,
-  Handshake,
-  Award,
-  ChevronRight,
-  ChevronDown,
-  Quote,
-  Briefcase,
-  ExternalLink,
-} from "lucide-react";
+import { ShieldCheck, Users, Target, Building2, Handshake, Award, ChevronRight, ChevronDown, Quote, Briefcase, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function KurumsalPage() {
+  const { lang } = useLanguage();
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -30,90 +16,67 @@ export default function KurumsalPage() {
 
   const faqData = [
     {
-      question:
-        "Gayrimenkul alım-satım işlemlerinde hizmet bedeliniz (komisyon) nedir?",
-      answer:
-        "Şeffaflık ilkemiz gereği, Taşınmaz Ticareti Hakkında Yönetmelik standartlarını uyguluyoruz. Alım-satım işlemlerinde satış bedeli üzerinden %2 + KDV alıcıdan, %2 + KDV satıcıdan olmak üzere hizmet bedeli uygulanır. Kiralama işlemlerinde ise bir kira bedeli + KDV olarak işlem yapılır. Tüm ödemeler faturalandırılır.",
+      question: lang === 'tr' ? "Gayrimenkul alım-satım işlemlerinde hizmet bedeliniz (komisyon) nedir?" : "What is your service fee (commission) for real estate transactions?",
+      answer: lang === 'tr' ? "Şeffaflık ilkemiz gereği, Taşınmaz Ticareti Hakkında Yönetmelik standartlarını uyguluyoruz. Alım-satım işlemlerinde satış bedeli üzerinden %2 + KDV alıcıdan, %2 + KDV satıcıdan olmak üzere hizmet bedeli uygulanır. Kiralama işlemlerinde ise bir kira bedeli + KDV olarak işlem yapılır. Tüm ödemeler faturalandırılır." : "In accordance with our principle of transparency, we apply the standards of the Regulation on Real Estate Trade. For buying and selling transactions, a service fee of 2% + VAT from the buyer and 2% + VAT from the seller is applied over the sales price. For rental transactions, one rent fee + VAT is charged. All payments are invoiced."
     },
     {
-      question:
-        "Yatırımlık arsa alırken nelere dikkat ediyorsunuz, süreç nasıl işliyor?",
-      answer:
-        "Konya'nın gelişen bölgelerini (özellikle sanayi ve yeni yerleşim akslarını) yakından takip ediyoruz. Size sunduğumuz her arsa için önce 'İmar Durumu Sorgulaması', 'Altyapı Analizi' ve 'Gelecek 5 Yıllık Değerleme Tahmini' yapıyoruz. Hisseli tapularda 'Rıza-i Taksim' sözleşmelerinin varlığını kontrol edip, hukuki olarak %100 temiz yerleri portföyümüze alıyoruz.",
+      question: lang === 'tr' ? "Yatırımlık arsa alırken nelere dikkat ediyorsunuz, süreç nasıl işliyor?" : "What do you consider when buying investment land, how does the process work?",
+      answer: lang === 'tr' ? "Konya'nın gelişen bölgelerini (özellikle sanayi ve yeni yerleşim akslarını) yakından takip ediyoruz. Size sunduğumuz her arsa için önce 'İmar Durumu Sorgulaması', 'Altyapı Analizi' ve 'Gelecek 5 Yıllık Değerleme Tahmini' yapıyoruz. Hisseli tapularda 'Rıza-i Taksim' sözleşmelerinin varlığını kontrol edip, hukuki olarak %100 temiz yerleri portföyümüze alıyoruz." : "We closely follow the developing regions of Konya (especially industrial and new settlement axes). For every land we offer, we first conduct a 'Zoning Status Inquiry', 'Infrastructure Analysis', and 'Future 5-Year Valuation Forecast'. We check the existence of consent contracts in shared deeds and add 100% legally clean places to our portfolio."
     },
     {
-      question:
-        "Yabancı uyruklu yatırımcılar için vatandaşlık işlemlerini yönetiyor musunuz?",
-      answer:
-        "Evet. Bünyemizdeki hukuk departmanı ve anlaşmalı olduğumuz yeminli tercümanlarla süreci A'dan Z'ye yönetiyoruz. 400.000 USD ve üzeri gayrimenkul yatırımıyla Türk Vatandaşlığı kazanımı sürecinde, tapu devrinden vatandaşlık başvurusuna kadar tüm bürokrasiyi sizin adınıza biz takip ediyoruz.",
+      question: lang === 'tr' ? "Yabancı uyruklu yatırımcılar için vatandaşlık işlemlerini yönetiyor musunuz?" : "Do you manage citizenship procedures for foreign investors?",
+      answer: lang === 'tr' ? "Evet. Bünyemizdeki hukuk departmanı ve anlaşmalı olduğumuz yeminli tercümanlarla süreci A'dan Z'ye yönetiyoruz. 400.000 USD ve üzeri gayrimenkul yatırımıyla Türk Vatandaşlığı kazanımı sürecinde, tapu devrinden vatandaşlık başvurusuna kadar tüm bürokrasiyi sizin adınıza biz takip ediyoruz." : "Yes. We manage the process from A to Z with our in-house legal department and sworn translators. In the process of acquiring Turkish Citizenship with a real estate investment of 400,000 USD and above, we follow all the bureaucracy on your behalf, from the transfer of the title deed to the citizenship application."
     },
   ];
 
   return (
     <main className="bg-white text-slate-800">
-      {/* 1. HERO BANNER */}
       <PageBanner
-        title="GÜÇLÜ GEÇMİŞ, AYDINLIK GELECEK"
+        title={lang === 'tr' ? "GÜÇLÜ GEÇMİŞ, AYDINLIK GELECEK" : "STRONG HISTORY, BRIGHT FUTURE"}
         image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070"
       />
 
-      {/* 2. GİRİŞ: PRESTİJ MANİFESTOSU */}
       <section className="relative py-12 lg:py-24 overflow-hidden">
         <div className="hidden lg:block absolute top-0 right-0 w-1/3 h-full bg-gray-50 -skew-x-12 z-0 opacity-50"></div>
         <div className="container mx-auto px-4 lg:px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
             <div className="lg:w-1/2 text-center lg:text-left">
               <div className="inline-block px-4 py-1 bg-yellow-100 text-yellow-700 font-bold text-[10px] lg:text-xs tracking-widest rounded-full mb-4">
-                KONYA'NIN EMLAK LİDERİ
+                {lang === 'tr' ? "KONYA'NIN EMLAK LİDERİ" : "KONYA'S REAL ESTATE LEADER"}
               </div>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 lg:mb-6 leading-tight">
-                Toprağa Değer, <br />
+                {lang === 'tr' ? "Toprağa Değer," : "Adding Value to Land,"} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-400">
-                  Hayata Güven Katıyoruz.
+                  {lang === 'tr' ? "Hayata Güven Katıyoruz." : "Trust to Life."}
                 </span>
               </h1>
               <p className="text-base lg:text-lg text-gray-600 leading-relaxed mb-6 lg:mb-8">
-                Konya’nın emlak merkezi olarak; Selçuklu, Meram ve Karatay başta
-                olmak üzere Konya’nın tüm ilçelerinde aktif olarak hizmet
-                vermekteyiz. Geniş portföyümüz ve yerel uzmanlığımızla,
-                Konya’nın her noktasında güvenilir ve profesyonel emlak
-                çözümleri sunuyoruz.
+                {lang === 'tr'
+                  ? "Konya’nın emlak merkezi olarak; Selçuklu, Meram ve Karatay başta olmak üzere Konya’nın tüm ilçelerinde aktif olarak hizmet vermekteyiz. Geniş portföyümüz ve yerel uzmanlığımızla, Konya’nın her noktasında güvenilir ve profesyonel emlak çözümleri sunuyoruz."
+                  : "As Konya's real estate center, we actively provide services in all districts of Konya, especially Selçuklu, Meram, and Karatay. With our wide portfolio and local expertise, we offer reliable and professional real estate solutions at every point in Konya."}
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                 <a
-                  href="https://www.sahibinden.com"
+                  href="https://zentralgayrimenkul.sahibinden.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto justify-center group flex items-center gap-3 bg-yellow-500 text-black px-8 py-4 rounded-lg shadow-xl hover:bg-yellow-400 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 font-bold"
                 >
                   <Briefcase size={22} className="text-black" />
-                  <span>İLANLARIMIZI İNCELE</span>
-                  <ExternalLink
-                    size={16}
-                    className="opacity-60 group-hover:opacity-100"
-                  />
+                  <span>{lang === 'tr' ? "İLANLARIMIZI İNCELE" : "VIEW OUR LISTINGS"}</span>
+                  <ExternalLink size={16} className="opacity-60 group-hover:opacity-100" />
                 </a>
               </div>
             </div>
             <div className="lg:w-1/2 relative w-full mt-8 lg:mt-0">
               <div className="grid grid-cols-2 gap-4">
-                <img
-                  src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000"
-                  className="rounded-2xl shadow-2xl mt-12 w-full h-48 lg:h-64 object-cover"
-                  alt="Ofis"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000"
-                  className="rounded-2xl shadow-2xl w-full h-48 lg:h-64 object-cover"
-                  alt="Toplantı"
-                />
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000" className="rounded-2xl shadow-2xl mt-12 w-full h-48 lg:h-64 object-cover" alt="Ofis" />
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000" className="rounded-2xl shadow-2xl w-full h-48 lg:h-64 object-cover" alt="Toplantı" />
               </div>
               <div className="absolute -bottom-6 -left-2 lg:-left-6 bg-yellow-600 text-white p-4 lg:p-6 rounded-xl shadow-xl">
                 <p className="font-bold text-2xl lg:text-3xl">7+</p>
-                <p className="text-[10px] lg:text-xs uppercase tracking-wider opacity-90">
-                  Yıllık Tecrübe
-                </p>
+                <p className="text-[10px] lg:text-xs uppercase tracking-wider opacity-90">{lang === 'tr' ? "Yıllık Tecrübe" : "Years Experience"}</p>
               </div>
             </div>
           </div>
@@ -123,115 +86,60 @@ export default function KurumsalPage() {
       <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-600 rounded-full blur-[100px] opacity-20"></div>
         <div className="container mx-auto px-4 lg:px-6 relative z-10 flex flex-col items-center text-center">
-          <Quote
-            size={40}
-            className="text-yellow-600 opacity-50 mb-6 lg:mb-6"
-          />
+          <Quote size={40} className="text-yellow-600 opacity-50 mb-6 lg:mb-6" />
           <p className="text-xl md:text-2xl lg:text-3xl font-light italic leading-relaxed max-w-4xl mb-8 lg:mb-10 text-gray-200">
-            "Bizim işimiz binalar değil, insanlardır. Bir ailenin huzurla
-            oturacağı bir ev bulduğumuzda veya bir yatırımcının birikimini
-            katladığımızda hissettiğimiz mutluluk, tüm ticari kaygıların
-            ötesindedir."
+            {lang === 'tr'
+              ? "\"Bizim işimiz binalar değil, insanlardır. Bir ailenin huzurla oturacağı bir ev bulduğumuzda veya bir yatırımcının birikimini katladığımızda hissettiğimiz mutluluk, tüm ticari kaygıların ötesindedir.\""
+              : "\"Our business is not buildings, it is people. The happiness we feel when we find a home where a family will live peacefully or when we multiply an investor's savings is beyond all commercial concerns.\""}
           </p>
           <div className="flex flex-col items-center justify-center text-center gap-1">
-            <div className="font-bold text-lg lg:text-xl text-white">
-              Semih Bahadır KAHRAMAN
-            </div>
-            <div className="text-yellow-500 text-xs lg:text-sm">
-              Kurucu & Yönetim Kurulu Bşk.
-            </div>
+            <div className="font-bold text-lg lg:text-xl text-white">Semih Bahadır KAHRAMAN</div>
+            <div className="text-yellow-500 text-xs lg:text-sm">{lang === 'tr' ? "Kurucu & Yönetim Kurulu Bşk." : "Founder & Chairman"}</div>
           </div>
         </div>
       </section>
 
-      {/* 3. İSTATİSTİKLER */}
       <section className="bg-slate-900 py-12 lg:py-20 text-white relative border-t border-slate-800">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="container mx-auto px-4 lg:px-6 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 text-center relative z-10">
           {[
-            { icon: Building2, val: "2,500+", label: "Portföy Sayısı" },
-            { icon: Users, val: "15,000+", label: "Müşteri Görüşmesi" },
-            { icon: Handshake, val: "%98", label: "Başarılı Satış" },
-            { icon: Award, val: "12", label: "Sektör Ödülü" },
+            { icon: Building2, val: "2,500+", label: lang === 'tr' ? "Portföy Sayısı" : "Portfolio Size" },
+            { icon: Users, val: "15,000+", label: lang === 'tr' ? "Müşteri Görüşmesi" : "Client Meetings" },
+            { icon: Handshake, val: "%98", label: lang === 'tr' ? "Başarılı Satış" : "Successful Sales" },
+            { icon: Award, val: "12", label: lang === 'tr' ? "Sektör Ödülü" : "Industry Awards" },
           ].map((item, idx) => (
-            <div
-              key={idx}
-              className="group p-4 lg:p-6 border border-slate-700 rounded-xl hover:border-yellow-500 transition-colors bg-slate-800/50 backdrop-blur-sm"
-            >
+            <div key={idx} className="group p-4 lg:p-6 border border-slate-700 rounded-xl hover:border-yellow-500 transition-colors bg-slate-800/50 backdrop-blur-sm">
               <item.icon className="w-8 h-8 lg:w-12 lg:h-12 mx-auto mb-3 lg:mb-4 text-yellow-500 group-hover:scale-110 transition-transform" />
-              <h3 className="text-2xl lg:text-4xl font-bold mb-1 lg:mb-2">
-                {item.val}
-              </h3>
-              <p className="text-slate-400 text-[10px] lg:text-sm uppercase tracking-widest">
-                {item.label}
-              </p>
+              <h3 className="text-2xl lg:text-4xl font-bold mb-1 lg:mb-2">{item.val}</h3>
+              <p className="text-slate-400 text-[10px] lg:text-sm uppercase tracking-widest">{item.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 4. TARİHÇE (TIMELINE) */}
       <section className="py-12 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="text-center mb-10 lg:mb-16">
-            <h2 className="text-yellow-600 font-bold tracking-widest uppercase mb-3 text-xs lg:text-sm">
-              BAŞARI YOLCULUĞUMUZ
-            </h2>
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">
-              Konya'dan Dünyaya Açılan Kapı
-            </h3>
+            <h2 className="text-yellow-600 font-bold tracking-widest uppercase mb-3 text-xs lg:text-sm">{lang === 'tr' ? "BAŞARI YOLCULUĞUMUZ" : "OUR JOURNEY OF SUCCESS"}</h2>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">{lang === 'tr' ? "Konya'dan Dünyaya Açılan Kapı" : "Gateway from Konya to the World"}</h3>
           </div>
 
           <div className="relative max-w-4xl mx-auto">
-            {/* Dikey Çizgi */}
             <div className="absolute left-4 lg:left-1/2 transform lg:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-600 via-slate-300 to-gray-50"></div>
-
             {[
-              {
-                year: "2010",
-                title: "Temeller Atıldı",
-                desc: "Konya merkezde ilk ofisimiz küçük bir hayalle açıldı.",
-                side: "left",
-              },
-              {
-                year: "2015",
-                title: "Bölgesel Büyüme",
-                desc: "Meram ve Selçuklu ve Karatay şubelerimizle hizmet ağımızı genişlettik.",
-                side: "right",
-              },
-              {
-                year: "2019",
-                title: "Dijital Dönüşüm",
-                desc: "Online emlak sistemine geçiş ve kurumsal kimlik yenilenmesi.",
-                side: "left",
-              },
-              {
-                year: "2024",
-                title: "Global Vizyon",
-                desc: "Yurt dışındaki müşterilerimize de Türkiye’deki gayrimenkul fırsatları hakkında danışmanlık hizmeti sunuyor, ihtiyaç ve beklentilerine uygun yatırım seçenekleri konusunda rehberlik ediyoruz. Amacımız, doğru bilgiyle güvenli ve bilinçli yatırım kararları alınmasına destek olmaktır.",
-                side: "right",
-              },
+              { year: "2010", title: lang === 'tr' ? "Temeller Atıldı" : "Foundations Laid", desc: lang === 'tr' ? "Konya merkezde ilk ofisimiz küçük bir hayalle açıldı." : "Our first office was opened in the center of Konya with a small dream.", side: "left" },
+              { year: "2015", title: lang === 'tr' ? "Bölgesel Büyüme" : "Regional Growth", desc: lang === 'tr' ? "Meram, Selçuklu ve Karatay şubelerimizle hizmet ağımızı genişlettik." : "We expanded our service network with branches in Meram, Selçuklu, and Karatay.", side: "right" },
+              { year: "2019", title: lang === 'tr' ? "Dijital Dönüşüm" : "Digital Transformation", desc: lang === 'tr' ? "Online emlak sistemine geçiş ve kurumsal kimlik yenilenmesi." : "Transition to online real estate system and renewal of corporate identity.", side: "left" },
+              { year: "2024", title: lang === 'tr' ? "Global Vizyon" : "Global Vision", desc: lang === 'tr' ? "Yurt dışındaki müşterilerimize de Türkiye’deki gayrimenkul fırsatları hakkında danışmanlık hizmeti sunuyor, rehberlik ediyoruz." : "We also offer consultancy services to our overseas clients regarding real estate opportunities in Turkey.", side: "right" },
             ].map((item, index) => (
-              <div
-                key={index}
-                className={`relative flex items-center justify-between mb-8 lg:mb-12 w-full ${item.side === "right" ? "lg:flex-row-reverse" : ""}`}
-              >
-                {/* Masaüstü Boşluk */}
+              <div key={index} className={`relative flex items-center justify-between mb-8 lg:mb-12 w-full ${item.side === "right" ? "lg:flex-row-reverse" : ""}`}>
                 <div className="hidden lg:block lg:w-5/12"></div>
-
-                {/* Nokta */}
                 <div className="absolute left-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 z-20 flex items-center justify-center w-9 h-9 lg:w-12 lg:h-12 bg-yellow-600 rounded-full shadow-lg border-4 border-white">
                   <div className="w-2 h-2 lg:w-3 lg:h-3 bg-white rounded-full"></div>
                 </div>
-
-                {/* İçerik Kutusu */}
                 <div className="ml-12 lg:ml-0 w-full lg:w-5/12 bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-600 hover:shadow-2xl transition-shadow duration-300 text-left">
-                  <span className="text-4xl lg:text-5xl font-bold text-slate-100 absolute top-2 right-4 opacity-50 select-none -z-10">
-                    {item.year}
-                  </span>
-                  <h4 className="text-lg lg:text-xl font-bold text-slate-900 mb-2">
-                    {item.title}
-                  </h4>
+                  <span className="text-4xl lg:text-5xl font-bold text-slate-100 absolute top-2 right-4 opacity-50 select-none -z-10">{item.year}</span>
+                  <h4 className="text-lg lg:text-xl font-bold text-slate-900 mb-2">{item.title}</h4>
                   <p className="text-gray-600 text-sm">{item.desc}</p>
                 </div>
               </div>
@@ -240,62 +148,31 @@ export default function KurumsalPage() {
         </div>
       </section>
 
-      {/* 5. ÇALIŞMA SİSTEMİMİZ */}
       <section className="py-12 lg:py-24 container mx-auto px-4 lg:px-6">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
           <div className="lg:w-1/3">
-            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 lg:mb-6">
-              Süreç Nasıl İşliyor?
-            </h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4 lg:mb-6">{lang === 'tr' ? "Süreç Nasıl İşliyor?" : "How Does the Process Work?"}</h2>
             <p className="text-gray-600 mb-6 lg:mb-8 text-sm lg:text-base">
-              Karmaşık bürokratik işlemleri sizin yerinize biz yönetiyoruz. Size
-              sadece imza atmak ve kahvenizi yudumlamak kalıyor.
+              {lang === 'tr' ? "Karmaşık bürokratik işlemleri sizin yerinize biz yönetiyoruz. Size sadece imza atmak ve kahvenizi yudumlamak kalıyor." : "We manage complex bureaucratic procedures for you. All you have to do is sign and sip your coffee."}
             </p>
-            {/* İLETİŞİM SAYFASINA YÖNLENDİRME */}
             <Link href="/iletisim">
               <button className="w-full sm:w-auto bg-slate-900 text-white px-8 py-3 rounded-full font-bold hover:bg-slate-800 transition-colors shadow-lg flex items-center justify-center gap-2 group">
-                Detaylı Bilgi Alın
-                <ChevronRight
-                  size={18}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
+                {lang === 'tr' ? "Detaylı Bilgi Alın" : "Get Detailed Information"}
+                <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
           </div>
           <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
             {[
-              {
-                id: "01",
-                title: "Analiz & Tanışma",
-                text: "Beklentilerinizi dinliyor, bütçenize en uygun rotayı belirliyoruz.",
-              },
-              {
-                id: "02",
-                title: "Portföy Sunumu",
-                text: "Size özel seçilmiş, hukuki kontrolü yapılmış gayrimenkulleri sunuyoruz.",
-              },
-              {
-                id: "03",
-                title: "Pazarlık & Anlaşma",
-                text: "Satıcı ile şeffaf bir ortamda, en doğru fiyat için masaya oturuyoruz.",
-              },
-              {
-                id: "04",
-                title: "Tapu & Teslim",
-                text: "Tüm resmi işlemleri tamamlıyor, anahtarınızı teslim ediyoruz.",
-              },
+              { id: "01", title: lang === 'tr' ? "Analiz & Tanışma" : "Analysis & Meeting", text: lang === 'tr' ? "Beklentilerinizi dinliyor, rotayı belirliyoruz." : "We listen to your expectations and determine the route." },
+              { id: "02", title: lang === 'tr' ? "Portföy Sunumu" : "Portfolio Presentation", text: lang === 'tr' ? "Size özel seçilmiş gayrimenkulleri sunuyoruz." : "We present real estate specially selected for you." },
+              { id: "03", title: lang === 'tr' ? "Pazarlık & Anlaşma" : "Negotiation & Agreement", text: lang === 'tr' ? "Satıcı ile en doğru fiyat için masaya oturuyoruz." : "We sit down with the seller for the most accurate price." },
+              { id: "04", title: lang === 'tr' ? "Tapu & Teslim" : "Deed & Delivery", text: lang === 'tr' ? "Tüm resmi işlemleri tamamlıyoruz." : "We complete all official procedures." },
             ].map((step, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-6 lg:p-8 rounded-2xl shadow-lg border border-gray-100 relative group overflow-hidden"
-              >
-                <div className="absolute -right-4 -top-4 text-8xl lg:text-9xl font-bold text-gray-50 group-hover:text-yellow-50 transition-colors duration-300 pointer-events-none">
-                  {step.id}
-                </div>
+              <div key={idx} className="bg-white p-6 lg:p-8 rounded-2xl shadow-lg border border-gray-100 relative group overflow-hidden">
+                <div className="absolute -right-4 -top-4 text-8xl lg:text-9xl font-bold text-gray-50 group-hover:text-yellow-50 transition-colors duration-300 pointer-events-none">{step.id}</div>
                 <div className="relative z-10">
-                  <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3 group-hover:text-yellow-600 transition-colors">
-                    {step.title}
-                  </h3>
+                  <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3 group-hover:text-yellow-600 transition-colors">{step.title}</h3>
                   <p className="text-gray-600 text-sm">{step.text}</p>
                 </div>
               </div>
@@ -304,105 +181,49 @@ export default function KurumsalPage() {
         </div>
       </section>
 
-      {/* 6. VİZYON MİSYON */}
       <section className="py-12 lg:py-20 bg-slate-50">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
             <div className="bg-white p-6 lg:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-b-4 border-slate-900 group">
-              <ShieldCheck
-                size={40}
-                className="text-slate-900 mb-4 lg:mb-6 group-hover:scale-110 transition-transform"
-              />
-              <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3">
-                Güven Politikamız
-              </h3>
+              <ShieldCheck size={40} className="text-slate-900 mb-4 lg:mb-6 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3">{lang === 'tr' ? "Güven Politikamız" : "Our Trust Policy"}</h3>
               <p className="text-gray-600 text-sm lg:text-base">
-                Yatırımcılarımıza şeffaf, hukuki temelleri sağlam ve risk
-                analizi profesyonelce yapılmış projeler sunuyoruz.
+                {lang === 'tr' ? "Yatırımcılarımıza şeffaf, hukuki temelleri sağlam ve risk analizi profesyonelce yapılmış projeler sunuyoruz." : "We offer our investors projects that are transparent, legally sound, and have professionally conducted risk analysis."}
               </p>
             </div>
             <div className="bg-white p-6 lg:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-b-4 border-yellow-600 group">
-              <Target
-                size={40}
-                className="text-yellow-600 mb-4 lg:mb-6 group-hover:scale-110 transition-transform"
-              />
-              <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3">
-                Global Vizyon
-              </h3>
+              <Target size={40} className="text-yellow-600 mb-4 lg:mb-6 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3">{lang === 'tr' ? "Global Vizyon" : "Global Vision"}</h3>
               <p className="text-gray-600 text-sm lg:text-base">
-                Türkiye'nin gayrimenkul gücünü global pazarlara taşıyarak,
-                uluslararası bir marka olmak. Konya'dan dünyaya açılan bir
-                pencere.
+                {lang === 'tr' ? "Türkiye'nin gayrimenkul gücünü global pazarlara taşıyarak, uluslararası bir marka olmak. Konya'dan dünyaya açılan bir pencere." : "To become an international brand by bringing Turkey's real estate power to global markets. A window opening from Konya to the world."}
               </p>
             </div>
             <div className="bg-white p-6 lg:p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-b-4 border-slate-900 group">
-              <Users
-                size={40}
-                className="text-slate-900 mb-4 lg:mb-6 group-hover:scale-110 transition-transform"
-              />
-              <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3">
-                Uzman Kadro
-              </h3>
+              <Users size={40} className="text-slate-900 mb-4 lg:mb-6 group-hover:scale-110 transition-transform" />
+              <h3 className="text-lg lg:text-xl font-bold text-slate-900 mb-2 lg:mb-3">{lang === 'tr' ? "Uzman Kadro" : "Expert Staff"}</h3>
               <p className="text-gray-600 text-sm lg:text-base">
-                Geniş ve deneyimli kadromuzla, her müşterimizin ihtiyaçlarına
-                özel çözümler sunuyor; alım, satım ve yatırım süreçlerinde
-                profesyonel destek sağlıyoruz. Güvenilir hizmet anlayışımızla
-                her adımda yanınızda olmayı hedefliyoruz.
+                {lang === 'tr' ? "Geniş ve deneyimli kadromuzla, her müşterimizin ihtiyaçlarına özel çözümler sunuyor; profesyonel destek sağlıyoruz." : "With our large and experienced staff, we offer tailored solutions to the needs of each customer and provide professional support."}
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. FAQ (SIKÇA SORULAN SORULAR) */}
       <section className="py-12 lg:py-24 container mx-auto px-4 lg:px-6">
         <div className="text-center mb-8 lg:mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">
-            Merak Edilenler
-          </h2>
-          <p className="text-gray-500 mt-2 text-base lg:text-lg">
-            Aklınızdaki soruları şeffaflıkla yanıtlıyoruz.
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">{lang === 'tr' ? "Merak Edilenler" : "Frequently Asked Questions"}</h2>
+          <p className="text-gray-500 mt-2 text-base lg:text-lg">{lang === 'tr' ? "Aklınızdaki soruları şeffaflıkla yanıtlıyoruz." : "We answer the questions on your mind with transparency."}</p>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqData.map((item, index) => (
-            <div
-              key={index}
-              className={`border rounded-xl transition-all duration-300 overflow-hidden ${
-                activeFaq === index
-                  ? "bg-slate-900 border-slate-900 shadow-xl"
-                  : "bg-white border-gray-200 hover:border-yellow-500"
-              }`}
-            >
-              <button
-                onClick={() => toggleFaq(index)}
-                className="w-full flex justify-between items-center p-4 lg:p-6 text-left focus:outline-none"
-              >
-                <span
-                  className={`font-bold text-base lg:text-lg ${activeFaq === index ? "text-white" : "text-slate-800"}`}
-                >
-                  {item.question}
-                </span>
-                <ChevronDown
-                  className={`transition-transform duration-300 shrink-0 ml-4 ${
-                    activeFaq === index
-                      ? "text-yellow-500 rotate-180"
-                      : "text-gray-400"
-                  }`}
-                />
+            <div key={index} className={`border rounded-xl transition-all duration-300 overflow-hidden ${activeFaq === index ? "bg-slate-900 border-slate-900 shadow-xl" : "bg-white border-gray-200 hover:border-yellow-500"}`}>
+              <button onClick={() => toggleFaq(index)} className="w-full flex justify-between items-center p-4 lg:p-6 text-left focus:outline-none">
+                <span className={`font-bold text-base lg:text-lg ${activeFaq === index ? "text-white" : "text-slate-800"}`}>{item.question}</span>
+                <ChevronDown className={`transition-transform duration-300 shrink-0 ml-4 ${activeFaq === index ? "text-yellow-500 rotate-180" : "text-gray-400"}`} />
               </button>
-
-              <div
-                className={`transition-all duration-300 ease-in-out ${
-                  activeFaq === index
-                    ? "max-h-96 opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
-              >
-                <div className="p-4 lg:p-6 pt-0 text-sm lg:text-base text-gray-400 leading-relaxed border-t border-slate-700/50">
-                  {item.answer}
-                </div>
+              <div className={`transition-all duration-300 ease-in-out ${activeFaq === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="p-4 lg:p-6 pt-0 text-sm lg:text-base text-gray-400 leading-relaxed border-t border-slate-700/50">{item.answer}</div>
               </div>
             </div>
           ))}

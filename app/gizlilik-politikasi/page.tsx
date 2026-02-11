@@ -1,29 +1,36 @@
-// app/gizlilik-politikasi/page.tsx
+"use client";
 import PageBanner from "@/components/PageBanner";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function GizlilikPage() {
+  const { lang } = useLanguage();
   return (
-    <main>
-      <PageBanner 
-        title="GİZLİLİK POLİTİKASI" 
-        image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80" 
+    <main className="bg-white min-h-screen">
+      <PageBanner
+        title={lang === 'tr' ? "GİZLİLİK POLİTİKASI" : "PRIVACY POLICY"}
+        image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80"
       />
-
       <section className="py-20 container mx-auto px-6 max-w-4xl">
         <div className="prose prose-lg text-gray-600">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">1. Veri Güvenliği Hakkında</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "1. Veri Güvenliği Hakkında" : "1. About Data Security"}</h2>
           <p className="mb-6">
-            Zentral Gayrimenkul Yatırım A.Ş. (Şirket) olarak, kişisel verilerinizin güvenliği hususuna azami hassasiyet göstermekteyiz. Bu bilinçle, Şirket olarak ürün ve hizmetlerimizden faydalanan kişiler dahil, Şirket ile ilişkili tüm şahıslara ait her türlü kişisel verinin 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVK Kanunu")'na uygun olarak işlenerek, muhafaza edilmesine büyük önem atfetmekteyiz.
+            {lang === 'tr'
+              ? "Zentral Gayrimenkul Yatırım A.Ş. (Şirket) olarak, kişisel verilerinizin güvenliği hususuna azami hassasiyet göstermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygun olarak işlenerek muhafaza edilmesine büyük önem atfetmekteyiz."
+              : "As Zentral Real Estate Investment Inc. (Company), we show maximum sensitivity to the security of your personal data. We attach great importance to processing and preserving it in accordance with the Personal Data Protection Law No. 6698."}
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">2. Kişisel Verilerin Toplanması</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "2. Kişisel Verilerin Toplanması" : "2. Collection of Personal Data"}</h2>
           <p className="mb-6">
-            Kişisel verileriniz, Şirketimiz tarafından sağlanan hizmet ve Şirketimizin ticari faaliyetlerine bağlı olarak değişkenlik gösterebilmekle birlikte; otomatik ya da otomatik olmayan yöntemlerle, Şirketimiz birimleri ve ofisler, Topluluk Şirketleri, internet sitesi, sosyal medya mecraları, mobil uygulamalar ve benzeri vasıtalarla sözlü, yazılı ya da elektronik olarak toplanabilecektir.
+            {lang === 'tr'
+              ? "Kişisel verileriniz, Şirketimiz tarafından sağlanan hizmet ve ticari faaliyetlere bağlı olarak otomatik ya da otomatik olmayan yöntemlerle toplanabilecektir."
+              : "Your personal data may be collected by automatic or non-automatic methods depending on the services and commercial activities provided by our Company."}
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">3. İletişim</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "3. İletişim" : "3. Contact"}</h2>
           <p>
-            Kişisel verilerinizle ilgili her türlü soru ve görüşleriniz için <strong>zentralgayrimenkul@gmail.com</strong> adresinden bize ulaşabilirsiniz.
+            {lang === 'tr' ? "Kişisel verilerinizle ilgili her türlü soru ve görüşleriniz için " : "For any questions or comments regarding your personal data, you can contact us at "}
+            <strong>zentralgayrimenkul@gmail.com</strong>
+            {lang === 'tr' ? " adresinden bize ulaşabilirsiniz." : "."}
           </p>
         </div>
       </section>

@@ -1,28 +1,35 @@
-// app/kullanim-sartlari/page.tsx
+"use client";
 import PageBanner from "@/components/PageBanner";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function KullanimSartlariPage() {
+  const { lang } = useLanguage();
   return (
-    <main>
-      <PageBanner 
-        title="KULLANIM ŞARTLARI" 
-        image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80" 
+    <main className="bg-white min-h-screen">
+      <PageBanner
+        title={lang === 'tr' ? "KULLANIM ŞARTLARI" : "TERMS OF USE"}
+        image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80"
       />
-
       <section className="py-20 container mx-auto px-6 max-w-4xl">
         <div className="prose prose-lg text-gray-600">
           <p className="mb-6">
-            Bu internet sitesine girmeniz veya bu internet sitesindeki herhangi bir bilgiyi kullanmanız aşağıdaki koşulları kabul ettiğiniz anlamına gelir.
+            {lang === 'tr'
+              ? "Bu internet sitesine girmeniz veya bu internet sitesindeki herhangi bir bilgiyi kullanmanız aşağıdaki koşulları kabul ettiğiniz anlamına gelir."
+              : "Entering this website or using any information on this website implies that you accept the following terms."}
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Fikri Mülkiyet Hakları</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "Fikri Mülkiyet Hakları" : "Intellectual Property Rights"}</h2>
           <p className="mb-6">
-            Bu internet sitesinde bulunan bilgiler, yazılar, resimler, markalar, slogan ve diğer işaretler ile sair sınaî ve fikri mülkiyet haklarına ilişkin bilgilerin korunmasına yönelik programlarla, sayfa düzeni ve işbu internet sitesinin sunumu Zentral Gayrimenkul'ün ya da Zentral Gayrimenkul'ün izin ve lisans aldığı kuruluşların mülkiyetindedir.
+            {lang === 'tr'
+              ? "Bu internet sitesinde bulunan bilgiler, yazılar, resimler, markalar ve diğer işaretler Zentral Gayrimenkul'ün mülkiyetindedir."
+              : "The information, texts, pictures, brands, and other signs on this website are the property of Zentral Real Estate."}
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Sorumluluk Reddi</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "Sorumluluk Reddi" : "Disclaimer"}</h2>
           <p className="mb-6">
-            Zentral Gayrimenkul, bu internet sitesinde yer alan bütün ürün ve hizmetleri, sayfaları, bilgileri, görsel unsurları önceden bildirimde bulunmadan değiştirme hakkını saklı tutar.
+            {lang === 'tr'
+              ? "Zentral Gayrimenkul, bu internet sitesinde yer alan bütün ürün ve hizmetleri önceden bildirimde bulunmadan değiştirme hakkını saklı tutar."
+              : "Zentral Real Estate reserves the right to change all products and services on this website without prior notice."}
           </p>
         </div>
       </section>
