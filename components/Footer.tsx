@@ -30,11 +30,12 @@ export default function Footer() {
   const mapLinkAnkara = "https://maps.google.com/?q=Ehlibeyt+Mahallesi+Ceyhun+Atuf+Kansu+Caddesi+No:100A/1238+Cankaya+Ankara";
   const yetkiBelgesiPdfYolu = "/YetkiBelgesi.pdf";
 
+  // YENİ EKLENEN GERÇEK SOSYAL MEDYA LİNKLERİNİZ
   const socialLinks = {
     instagram: "https://www.instagram.com/zentral.gayrimenkul?igsh=N3VpMGVzdGdmNWFq&utm_source=qr",
-    x_twitter: "https://twitter.com/zentralgayrimenkul",
-    facebook: "https://facebook.com/zentralgayrimenkul",
-    linkedin: "https://linkedin.com/company/zentralgayrimenkul"
+    x_twitter: "https://x.com/zentralgyo?s=11",
+    facebook: "https://www.facebook.com/profile.php?id=61585609359960",
+    linkedin: "https://www.linkedin.com/in/zentral-gayrimenkul-125b393ab/"
   };
 
   return (
@@ -127,7 +128,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright Bar: Kırık Linkler ve Yıl Düzeltildi */}
       <div className="bg-[#050911] py-4 text-center text-[10px] text-gray-600 border-t border-gray-900">
         <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
           <p>© {new Date().getFullYear()} Zentral Gayrimenkul Yatırım A.Ş.</p>

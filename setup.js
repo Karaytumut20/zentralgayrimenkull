@@ -1,173 +1,158 @@
 const fs = require("fs");
 const path = require("path");
 
-console.log("TypeScript (Vercel Build) Hatası Çözülüyor...");
+console.log("Sosyal Medya Linkleri (X, Facebook, LinkedIn) Güncelleniyor...");
 
-const serviceCode = `"use client";
-import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
-import { ArrowRight, Factory, Building2, Map, Globe, X, CheckCircle2, LucideIcon } from 'lucide-react';
-import { useLanguage } from './LanguageContext';
+const footerCode = `"use client";
+import Link from "next/link";
+import { Phone, Smartphone, Mail, MapPin, Instagram, Twitter, Facebook, Linkedin, ChevronRight, ShieldCheck, Download } from "lucide-react";
+import Image from "next/image";
+import { useLanguage } from "./LanguageContext";
 
-// TİP TANIMLAMASI BURAYA EKLENDİ (Hatayı Çözen Kısım)
-interface ServiceItem {
-  id: string;
-  title: string;
-  desc: string;
-  image: string;
-  icon: LucideIcon;
-  longDescription: React.ReactNode;
-}
-
-export default function ServiceSection() {
+export default function Footer() {
   const { lang } = useLanguage();
 
-  // STATE TİPİ BURADA BELİRTİLDİ (<ServiceItem | null>)
-  const [activeService, setActiveService] = useState<ServiceItem | null>(null);
-
-  const services: ServiceItem[] = [
-    {
-      id: "01",
-      title: lang === 'tr' ? "SANAYİ & LOJİSTİK" : "INDUSTRY & LOGISTICS",
-      desc: lang === 'tr' ? "Organize sanayi bölgelerinde fabrika ve depo projeleri geliştirme." : "Factory and warehouse project development in organized industrial zones.",
-      image: "https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=800",
-      icon: Factory,
-      longDescription: (
-        <div className="space-y-4">
-          <p>{lang === 'tr' ? 'Konya Organize Sanayi Bölgeleri başta olmak üzere...' : 'We develop turnkey projects for production and storage needs, especially in Konya Organized Industrial Zones.'}</p>
-          <ul className="space-y-2 mt-4">
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'Fizibilite: Bölgesel teşvik ve lojistik analizi.' : 'Feasibility: Regional incentive and logistics analysis.'}</span></li>
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'Endüstriyel Tasarım: Yükleme rampaları.' : 'Industrial Design: Loading ramps and crane ways.'}</span></li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      id: "02",
-      title: lang === 'tr' ? "TİCARİ PLAZALAR" : "COMMERCIAL PLAZAS",
-      desc: lang === 'tr' ? "Şehir merkezlerinde A+ ofis ve karma kullanım projeleri." : "A+ office and mixed-use projects in city centers.",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800",
-      icon: Building2,
-      longDescription: (
-        <div className="space-y-4">
-          <p>{lang === 'tr' ? 'Şehrin en değerli lokasyonlarında ofis projeleri tasarlıyoruz.' : 'We design A+ office projects combining modern architecture and smart building technologies.'}</p>
-          <ul className="space-y-2 mt-4">
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'Yüksek Kira Getirisi' : 'High Rental Income Guarantee'}</span></li>
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'Merkezi Konum' : 'Central Location & Accessibility'}</span></li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      id: "03",
-      title: lang === 'tr' ? "ARSA GELİŞTİRME" : "LAND DEVELOPMENT",
-      desc: lang === 'tr' ? "İmar planlaması ve parselasyon süreçleri yönetimi." : "Zoning planning and parceling process management.",
-      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800",
-      icon: Map,
-      longDescription: (
-        <div className="space-y-4">
-          <p>{lang === 'tr' ? 'Ham arazileri inşaata hazır arsalara dönüştürüyoruz.' : 'We transform raw lands into construction-ready, high-value lands through professional planning.'}</p>
-          <ul className="space-y-2 mt-4">
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'İmar Analizi' : 'Zoning Analysis'}</span></li>
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'Değer Artışı' : 'High Value Increase'}</span></li>
-          </ul>
-        </div>
-      )
-    },
-    {
-      id: "04",
-      title: lang === 'tr' ? "ULUSLARARASI YATIRIM" : "INTERNATIONAL INVESTMENT",
-      desc: lang === 'tr' ? "Londra ve Dubai pazarında gayrimenkul danışmanlığı." : "Real estate consultancy in London and Dubai markets.",
-      image: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=800",
-      icon: Globe,
-      longDescription: (
-        <div className="space-y-4">
-          <p>{lang === 'tr' ? 'Global pazarlarda döviz bazlı getiri sağlayan fırsatlar sunuyoruz.' : 'We offer real estate opportunities providing foreign exchange returns in global markets.'}</p>
-          <ul className="space-y-2 mt-4">
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'Dubai: Vergisiz kazanç.' : 'Dubai: Tax-free income.'}</span></li>
-              <li className="flex gap-3"><CheckCircle2 className="text-[#D4AF37] w-5 h-5 flex-shrink-0"/> <span>{lang === 'tr' ? 'Vatandaşlık İşlemleri' : 'Citizenship Programs'}</span></li>
-          </ul>
-        </div>
-      )
-    }
+  const quickLinks = [
+    { name: lang === 'tr' ? "Anasayfa" : "Home", href: "/" },
+    { name: lang === 'tr' ? "Kurumsal" : "Corporate", href: "/kurumsal" },
+    { name: lang === 'tr' ? "Yatırım" : "Investment", href: "/yatirim" },
+    { name: lang === 'tr' ? "Medya" : "Media", href: "/medya" },
+    { name: lang === 'tr' ? "İletişim" : "Contact", href: "/iletisim" },
   ];
 
+  const activityLinks = [
+    { name: lang === 'tr' ? "Site Yönetimi" : "Site Management", href: "/yatirim" },
+    { name: lang === 'tr' ? "Gayrimenkul Satış İşlemleri" : "Real Estate Sales", href: "/yatirim" },
+    { name: lang === 'tr' ? "Gayrimenkul Takibi" : "Real Estate Tracking", href: "/yatirim" },
+    { name: lang === 'tr' ? "Villa Satışı" : "Villa Sales", href: "/yatirim" },
+    { name: lang === 'tr' ? "Fabrika Satışı" : "Factory Sales", href: "/yatirim" },
+    { name: lang === 'tr' ? "Arsa Geliştirme" : "Land Development", href: "/yatirim" },
+    { name: lang === 'tr' ? "Kiralama Yönetimi" : "Rental Management", href: "/yatirim" },
+    { name: lang === 'tr' ? "Yatırım Danışmanlığı" : "Investment Consultancy", href: "/yatirim" },
+  ];
+
+  const mapLinkKonya = "https://www.google.com/maps/place/Kumk%C3%B6pr%C3%BC,+K%C3%BC%C3%A7%C3%BCk+Kumk%C3%B6pr%C3%BC+Cd.+No:176,+42020+Karatay%2FKonya/@37.8509109,32.5291451,17z/data=!3m1!4b1!4m6!3m5!1s0x14d084d608e11d51:0x2253040cf55190e1!8m2!3d37.8509067!4d32.53172!16s%2Fg%2F11c2fn1wp3?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D";
+  const mapLinkAnkara = "https://maps.google.com/?q=Ehlibeyt+Mahallesi+Ceyhun+Atuf+Kansu+Caddesi+No:100A/1238+Cankaya+Ankara";
+  const yetkiBelgesiPdfYolu = "/YetkiBelgesi.pdf";
+
+  // YENİ EKLENEN GERÇEK SOSYAL MEDYA LİNKLERİNİZ
+  const socialLinks = {
+    instagram: "https://www.instagram.com/zentral.gayrimenkul?igsh=N3VpMGVzdGdmNWFq&utm_source=qr",
+    x_twitter: "https://x.com/zentralgyo?s=11",
+    facebook: "https://www.facebook.com/profile.php?id=61585609359960",
+    linkedin: "https://www.linkedin.com/in/zentral-gayrimenkul-125b393ab/"
+  };
+
   return (
-    <section className="py-16 lg:py-28 bg-[#F8F9FA]">
-      {activeService && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div className="absolute inset-0 bg-[#051328]/80 backdrop-blur-sm" onClick={() => setActiveService(null)}></div>
-            <div className="relative bg-white w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-sm shadow-2xl animate-in zoom-in-95 duration-300">
-                <button onClick={() => setActiveService(null)} className="absolute top-4 right-4 z-20 p-2.5 bg-[#051328] text-[#D4AF37] border border-[#D4AF37]/50 rounded-full shadow-lg hover:bg-red-600 hover:text-white transition-all">
-                    <X size={24} />
-                </button>
-                <div className="relative h-56 w-full">
-                    <Image src={activeService.image} alt={activeService.title} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                    <div className="absolute bottom-6 left-6 flex items-center gap-3 text-white">
-                        <activeService.icon size={28} className="text-[#D4AF37]" />
-                        <h3 className="text-2xl font-serif font-bold">{activeService.title}</h3>
-                    </div>
-                </div>
-                <div className="p-8 text-gray-600">
-                    {activeService.longDescription}
-                    <div className="mt-6 pt-6 border-t border-gray-100">
-                        <Link href="/iletisim" className="block w-full text-center bg-[#051328] text-white py-3 font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-[#051328] transition-colors rounded-sm">
-                            {lang === 'tr' ? 'Danışmanla Görüş' : 'Contact an Advisor'}
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </div>
-      )}
+    <footer className="bg-[#0b1120] text-gray-300 border-t border-gray-800 font-sans">
+      <div className="container mx-auto px-6 py-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8">
 
-      <div className="container mx-auto px-4 lg:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-20">
-          <span className="text-[#D4AF37] font-bold tracking-[0.3em] text-xs lg:text-sm uppercase block mb-3">
-             {lang === 'tr' ? 'Uzmanlık Alanlarımız' : 'Our Areas of Expertise'}
-          </span>
-          <h2 className="text-4xl lg:text-5xl font-serif text-[#051328]">
-            {lang === 'tr' ? 'Sektörel Çözümler' : 'Sectoral Solutions'}
-          </h2>
-          <div className="w-24 h-1 bg-[#D4AF37] mx-auto mt-6"></div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((item, idx) => (
-            <div key={idx} onClick={() => setActiveService(item)} className="group block relative h-[400px] overflow-hidden bg-[#051328] shadow-xl hover:shadow-2xl transition-all duration-500 rounded-sm cursor-pointer">
-              <div className="absolute inset-0 h-full w-full">
-                <Image src={item.image} alt={item.title} fill className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#051328] via-[#051328]/50 to-transparent"></div>
-              </div>
-              <div className="absolute inset-0 p-8 flex flex-col justify-end z-20">
-                <div className="absolute top-8 left-8 right-8 flex justify-between items-start border-b border-white/20 pb-4 mb-auto">
-                    <item.icon size={32} className="text-white group-hover:text-[#D4AF37] transition-colors" />
-                    <span className="text-4xl font-serif font-bold text-white/10">{item.id}</span>
-                </div>
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-2xl font-serif text-white mb-3 group-hover:text-[#D4AF37]">{item.title}</h3>
-                    <p className="text-gray-300 text-sm leading-relaxed mb-6 border-l-2 border-[#D4AF37] pl-4 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                        {item.desc}
-                    </p>
-                    <div className="flex items-center gap-2 text-white text-xs font-bold uppercase tracking-widest group-hover:gap-4 transition-all">
-                        {lang === 'tr' ? 'Detayları İncele' : 'View Details'} <ArrowRight size={16} className="text-[#D4AF37]" />
-                    </div>
-                </div>
-              </div>
-              <div className="absolute inset-4 border border-[#D4AF37] opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all pointer-events-none z-30"></div>
+          <div className="lg:col-span-3 flex flex-col justify-between">
+            <div>
+              <Link href="/" className="relative block w-48 h-12 mb-4">
+                <Image src="/Yeni klasör (2)/test.png" alt="Zentral Gayrimenkul" fill className="object-contain object-left" />
+              </Link>
+              <p className="text-xs text-gray-400 mb-6 max-w-xs leading-relaxed">
+                {lang === 'tr'
+                  ? '7 yıllık tecrübe ile değer üreten, Konya ve Ankara merkezli gayrimenkul projeleri.'
+                  : 'Real estate projects based in Konya and Ankara, producing value with 7 years of experience.'}
+              </p>
             </div>
-          ))}
+            <div className="flex items-center gap-3">
+              <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"><Instagram size={16} /></a>
+              <a href={socialLinks.x_twitter} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"><Twitter size={16} /></a>
+              <a href={socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"><Facebook size={16} /></a>
+              <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-gray-400 hover:bg-yellow-600 hover:text-white transition-all shadow-md"><Linkedin size={16} /></a>
+            </div>
+          </div>
+
+          <div className="lg:col-span-4 grid grid-cols-2 gap-4">
+            <div>
+              <h3 className="text-white font-bold text-sm mb-3 border-l-2 border-yellow-600 pl-2">{lang === 'tr' ? 'Hızlı Erişim' : 'Quick Links'}</h3>
+              <ul className="space-y-2">
+                {quickLinks.map((item) => (
+                  <li key={item.name}><Link href={item.href} className="flex items-center hover:text-yellow-500 transition-colors text-xs"><ChevronRight size={12} className="mr-1 text-yellow-600"/>{item.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-bold text-sm mb-3 border-l-2 border-yellow-600 pl-2">{lang === 'tr' ? 'Faaliyetler' : 'Activities'}</h3>
+              <ul className="space-y-2">
+                {activityLinks.map((item) => (
+                  <li key={item.name}><Link href={item.href} className="flex items-center hover:text-yellow-500 transition-colors text-xs"><ChevronRight size={12} className="mr-1 text-yellow-600"/>{item.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 flex flex-col gap-5">
+            <h3 className="text-white font-bold text-sm -mb-2 border-l-2 border-yellow-600 pl-2">{lang === 'tr' ? 'İletişim Noktaları' : 'Contact Points'}</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              <div className="space-y-3 text-[11px]">
+                <h4 className="text-yellow-600 font-bold text-xs uppercase tracking-wide">{lang === 'tr' ? 'Konya Ofis' : 'Konya Office'}</h4>
+                <a href={mapLinkKonya} target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 hover:text-yellow-500 transition-colors group">
+                  <MapPin className="text-gray-500 group-hover:text-yellow-600 shrink-0 mt-0.5" size={14}/>
+                  <span className="text-gray-400 group-hover:text-gray-200">Kumköprü Mah. Küçükkumköprü Cad. No:176DC Karatay/Konya</span>
+                </a>
+                <div className="flex flex-col gap-2 pl-6">
+                  <a href="tel:03322338042" className="flex items-center gap-2 hover:text-yellow-500 transition-colors"><Phone size={14} className="text-gray-500" /><span>0332 233 80 42</span></a>
+                  <a href="tel:05013338042" className="flex items-center gap-2 hover:text-yellow-500 transition-colors"><Smartphone size={14} className="text-gray-500" /><span>0501 333 80 42</span></a>
+                </div>
+                <a href="mailto:zentralgayrimenkul@gmail.com" className="flex items-center gap-2 hover:text-yellow-500 transition-colors pl-0.5">
+                  <Mail className="text-gray-500 shrink-0" size={14} />
+                  <span className="truncate">zentralgayrimenkul@gmail.com</span>
+                </a>
+              </div>
+
+              <div className="space-y-3 text-[11px] sm:border-l sm:border-gray-800 sm:pl-4">
+                <h4 className="text-yellow-600 font-bold text-xs uppercase tracking-wide">{lang === 'tr' ? 'Ankara Ofis' : 'Ankara Office'}</h4>
+                <a href={mapLinkAnkara} target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 hover:text-yellow-500 transition-colors group">
+                  <MapPin className="text-gray-500 group-hover:text-yellow-600 shrink-0 mt-0.5" size={14}/>
+                  <span className="text-gray-400 group-hover:text-gray-200">Ehlibeyt Mah. Ceyhun Atuf Kansu Cad. No:100A/1238 Çankaya/Ankara</span>
+                </a>
+                <div className="flex flex-col gap-2 pl-6">
+                  <a href="tel:05323991663" className="flex items-center gap-2 hover:text-yellow-500 transition-colors"><Smartphone size={14} className="text-gray-500" /><span>0532 399 1663</span></a>
+                </div>
+                <a href="mailto:Zentralankara@gmail.com" className="flex items-center gap-2 hover:text-yellow-500 transition-colors pl-0.5">
+                  <Mail className="text-gray-500 shrink-0" size={14} />
+                  <span className="truncate">zentralankara@gmail.com</span>
+                </a>
+              </div>
+            </div>
+
+            <a href={yetkiBelgesiPdfYolu} download="Zentral_Yetki_Belgesi.pdf" className="mt-auto group flex items-center justify-between p-2.5 rounded border border-gray-800 bg-[#0e1525] hover:border-yellow-600/50 hover:bg-[#161f32] transition-all cursor-pointer">
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-full bg-yellow-600/10 flex items-center justify-center shrink-0 group-hover:bg-yellow-600 transition-colors"><ShieldCheck size={14} className="text-yellow-600 group-hover:text-white transition-colors"/></div>
+                <div><div className="text-[11px] font-bold text-gray-300 group-hover:text-white">Semih Bahadır Kahraman</div></div>
+              </div>
+              <Download size={12} className="text-gray-600 group-hover:text-yellow-500 transition-colors"/>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
-  );
-}`;
 
-fs.writeFileSync(
-  path.join(__dirname, "components", "ServiceSection.tsx"),
-  serviceCode,
-);
+      <div className="bg-[#050911] py-4 text-center text-[10px] text-gray-600 border-t border-gray-900">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+          <p>© {new Date().getFullYear()} Zentral Gayrimenkul Yatırım A.Ş.</p>
+          <div className="flex gap-4 mt-2 md:mt-0">
+            <Link href="/gizlilik-politikasi" className="hover:text-gray-400">
+              {lang === 'tr' ? 'Gizlilik' : 'Privacy'}
+            </Link>
+            <Link href="/kullanim-sartlari" className="hover:text-gray-400">
+              {lang === 'tr' ? 'Kullanım Şartları' : 'Terms of Use'}
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+`;
+
+fs.writeFileSync(path.join(__dirname, "components", "Footer.tsx"), footerCode);
+
 console.log(
-  "✅ Vercel Build (Type error: Property 'image' does not exist on type 'never') sorunu çözüldü!",
+  "✅ Başarılı! LinkedIn, X(Twitter) ve Facebook orijinal linkleriniz başarıyla Footer ikonlarına eklendi.",
 );
