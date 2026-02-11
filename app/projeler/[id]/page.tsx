@@ -1,5 +1,6 @@
 "use client";
 import PageBanner from "@/components/PageBanner";
+import Link from "next/link";
 import { MapPin, Bed, Bath, Move } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 import { use } from "react";
@@ -49,9 +50,10 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
             <div className="bg-slate-900 text-white p-8 rounded-sm sticky top-32">
               <p className="text-gray-400 text-sm uppercase">{lang === 'tr' ? "Fiyat" : "Price"}</p>
               <div className="text-2xl font-bold text-yellow-500 mb-6">{lang === 'tr' ? project.priceTR : project.priceEN}</div>
-              <a href="/iletisim" className="block w-full text-center bg-yellow-600 py-3 font-bold rounded-sm hover:bg-yellow-700 transition-colors">
+              {/* <a href> yerine <Link href> yapıldı, sayfa geçişleri hızlandırıldı */}
+              <Link href="/iletisim" className="block w-full text-center bg-yellow-600 py-3 font-bold rounded-sm hover:bg-yellow-700 transition-colors">
                 {lang === 'tr' ? "BİLGİ AL" : "GET INFORMATION"}
-              </a>
+              </Link>
             </div>
           </div>
 

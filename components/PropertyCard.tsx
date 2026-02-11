@@ -18,7 +18,6 @@ interface PropertyProps {
 export default function PropertyCard({ property }: { property: PropertyProps }) {
   const { lang } = useLanguage();
 
-  // Fiyat formatlama (örn: 1.250.000 ₺)
   const formattedPrice = new Intl.NumberFormat('tr-TR', {
     style: 'currency',
     currency: 'TRY',
@@ -27,7 +26,6 @@ export default function PropertyCard({ property }: { property: PropertyProps }) 
 
   return (
     <Link href={`/ilan/${property.id}`} className="group block bg-white border rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
-      {/* Resim Alanı */}
       <div className="relative h-64 w-full overflow-hidden">
         <span className={`absolute top-3 left-3 px-3 py-1 text-xs font-bold text-white rounded-full z-10 ${property.type === 'Satılık' ? 'bg-blue-600' : 'bg-green-600'}`}>
           {property.type === 'Satılık' ? (lang === 'tr' ? 'Satılık' : 'For Sale') : (lang === 'tr' ? 'Kiralık' : 'For Rent')}
@@ -40,7 +38,6 @@ export default function PropertyCard({ property }: { property: PropertyProps }) 
         />
       </div>
 
-      {/* İçerik Alanı */}
       <div className="p-5">
         <div className="flex items-center text-gray-500 text-sm mb-2">
           <MapPin size={16} className="mr-1" />

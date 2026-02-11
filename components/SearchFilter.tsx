@@ -9,7 +9,6 @@ export default function SearchFilter() {
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-xl max-w-4xl mx-auto -mt-10 relative z-20">
-      {/* Tab Seçimi */}
       <div className="flex gap-4 mb-6 border-b pb-2">
         <button
           onClick={() => setActiveTab('satilik')}
@@ -25,7 +24,6 @@ export default function SearchFilter() {
         </button>
       </div>
 
-      {/* Form Alanları */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="space-y-1">
           <label className="text-xs font-bold text-gray-500 uppercase">{lang === 'tr' ? 'Konum' : 'Location'}</label>
