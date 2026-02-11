@@ -1,7 +1,7 @@
-// components/PropertyCard.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bed, Bath, Move, MapPin } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
 interface PropertyProps {
   id: string;
@@ -16,6 +16,8 @@ interface PropertyProps {
 }
 
 export default function PropertyCard({ property }: { property: PropertyProps }) {
+  const { lang } = useLanguage();
+
   // Fiyat formatlama (örn: 1.250.000 ₺)
   const formattedPrice = new Intl.NumberFormat('tr-TR', {
     style: 'currency',
@@ -28,7 +30,7 @@ export default function PropertyCard({ property }: { property: PropertyProps }) 
       {/* Resim Alanı */}
       <div className="relative h-64 w-full overflow-hidden">
         <span className={`absolute top-3 left-3 px-3 py-1 text-xs font-bold text-white rounded-full z-10 ${property.type === 'Satılık' ? 'bg-blue-600' : 'bg-green-600'}`}>
-          {property.type}
+          {property.type === 'Satılık' ? (lang === 'tr' ? 'Satılık' : 'For Sale') : (lang === 'tr' ? 'Kiralık' : 'For Rent')}
         </span>
         <Image
           src={property.image}
@@ -44,18 +46,18 @@ export default function PropertyCard({ property }: { property: PropertyProps }) 
           <MapPin size={16} className="mr-1" />
           {property.location}
         </div>
-        
+
         <h3 className="text-xl font-bold text-gray-900 mb-2 truncate">{property.title}</h3>
         <div className="text-2xl font-bold text-blue-600 mb-4">{formattedPrice}</div>
 
         <div className="flex justify-between items-center text-gray-600 border-t pt-4">
           <div className="flex items-center gap-1">
             <Bed size={18} />
-            <span className="text-sm font-medium">{property.beds} Oda</span>
+            <span className="text-sm font-medium">{property.beds} {lang === 'tr' ? 'Oda' : 'Beds'}</span>
           </div>
           <div className="flex items-center gap-1">
             <Bath size={18} />
-            <span className="text-sm font-medium">{property.baths} Banyo</span>
+            <span className="text-sm font-medium">{property.baths} {lang === 'tr' ? 'Banyo' : 'Baths'}</span>
           </div>
           <div className="flex items-center gap-1">
             <Move size={18} />

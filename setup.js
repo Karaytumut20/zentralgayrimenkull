@@ -2,237 +2,209 @@ const fs = require("fs");
 const path = require("path");
 
 console.log(
-  "Son Eksikler (Gizlilik, Kullanım Şartları, Projeler) Tamamlanıyor...",
+  "Ekstra Bileşenler (Arama, İlan Kartı, Özellikler) Çift Dilli Hale Getiriliyor...",
 );
 
 const ensureDir = (dirPath) => {
   if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 };
 
-ensureDir(path.join(__dirname, "app", "gizlilik-politikasi"));
-ensureDir(path.join(__dirname, "app", "kullanim-sartlari"));
-ensureDir(path.join(__dirname, "app", "projeler", "[id]"));
+ensureDir(path.join(__dirname, "components"));
 
 // =====================================================================
-// 1. GİZLİLİK POLİTİKASI
+// 1. SEARCH FILTER (Arama Filtresi) - TAM KOD
 // =====================================================================
-const gizlilikCode = `"use client";
-import PageBanner from "@/components/PageBanner";
-import { useLanguage } from "@/components/LanguageContext";
+const searchFilterCode = `"use client";
+import { useState } from 'react';
+import { Search } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 
-export default function GizlilikPage() {
+export default function SearchFilter() {
   const { lang } = useLanguage();
+  const [activeTab, setActiveTab] = useState<'satilik' | 'kiralik'>('satilik');
+
   return (
-    <main className="bg-white min-h-screen">
-      <PageBanner
-        title={lang === 'tr' ? "GİZLİLİK POLİTİKASI" : "PRIVACY POLICY"}
-        image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80"
-      />
-      <section className="py-20 container mx-auto px-6 max-w-4xl">
-        <div className="prose prose-lg text-gray-600">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "1. Veri Güvenliği Hakkında" : "1. About Data Security"}</h2>
-          <p className="mb-6">
-            {lang === 'tr'
-              ? "Zentral Gayrimenkul Yatırım A.Ş. (Şirket) olarak, kişisel verilerinizin güvenliği hususuna azami hassasiyet göstermekteyiz. 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygun olarak işlenerek muhafaza edilmesine büyük önem atfetmekteyiz."
-              : "As Zentral Real Estate Investment Inc. (Company), we show maximum sensitivity to the security of your personal data. We attach great importance to processing and preserving it in accordance with the Personal Data Protection Law No. 6698."}
-          </p>
+    <div className="bg-white p-6 rounded-2xl shadow-xl max-w-4xl mx-auto -mt-10 relative z-20">
+      {/* Tab Seçimi */}
+      <div className="flex gap-4 mb-6 border-b pb-2">
+        <button
+          onClick={() => setActiveTab('satilik')}
+          className={\`pb-2 font-semibold transition-colors \${activeTab === 'satilik' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}\`}
+        >
+          {lang === 'tr' ? 'Satılık' : 'For Sale'}
+        </button>
+        <button
+          onClick={() => setActiveTab('kiralik')}
+          className={\`pb-2 font-semibold transition-colors \${activeTab === 'kiralik' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500'}\`}
+        >
+          {lang === 'tr' ? 'Kiralık' : 'For Rent'}
+        </button>
+      </div>
 
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "2. Kişisel Verilerin Toplanması" : "2. Collection of Personal Data"}</h2>
-          <p className="mb-6">
-            {lang === 'tr'
-              ? "Kişisel verileriniz, Şirketimiz tarafından sağlanan hizmet ve ticari faaliyetlere bağlı olarak otomatik ya da otomatik olmayan yöntemlerle toplanabilecektir."
-              : "Your personal data may be collected by automatic or non-automatic methods depending on the services and commercial activities provided by our Company."}
-          </p>
-
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "3. İletişim" : "3. Contact"}</h2>
-          <p>
-            {lang === 'tr' ? "Kişisel verilerinizle ilgili her türlü soru ve görüşleriniz için " : "For any questions or comments regarding your personal data, you can contact us at "}
-            <strong>zentralgayrimenkul@gmail.com</strong>
-            {lang === 'tr' ? " adresinden bize ulaşabilirsiniz." : "."}
-          </p>
+      {/* Form Alanları */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-500 uppercase">{lang === 'tr' ? 'Konum' : 'Location'}</label>
+          <input
+            type="text"
+            placeholder={lang === 'tr' ? 'İlçe, Mahalle...' : 'District, Neighborhood...'}
+            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+          />
         </div>
-      </section>
-    </main>
-  );
-}
-`;
 
-// =====================================================================
-// 2. KULLANIM ŞARTLARI
-// =====================================================================
-const kullanimCode = `"use client";
-import PageBanner from "@/components/PageBanner";
-import { useLanguage } from "@/components/LanguageContext";
-
-export default function KullanimSartlariPage() {
-  const { lang } = useLanguage();
-  return (
-    <main className="bg-white min-h-screen">
-      <PageBanner
-        title={lang === 'tr' ? "KULLANIM ŞARTLARI" : "TERMS OF USE"}
-        image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80"
-      />
-      <section className="py-20 container mx-auto px-6 max-w-4xl">
-        <div className="prose prose-lg text-gray-600">
-          <p className="mb-6">
-            {lang === 'tr'
-              ? "Bu internet sitesine girmeniz veya bu internet sitesindeki herhangi bir bilgiyi kullanmanız aşağıdaki koşulları kabul ettiğiniz anlamına gelir."
-              : "Entering this website or using any information on this website implies that you accept the following terms."}
-          </p>
-
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "Fikri Mülkiyet Hakları" : "Intellectual Property Rights"}</h2>
-          <p className="mb-6">
-            {lang === 'tr'
-              ? "Bu internet sitesinde bulunan bilgiler, yazılar, resimler, markalar ve diğer işaretler Zentral Gayrimenkul'ün mülkiyetindedir."
-              : "The information, texts, pictures, brands, and other signs on this website are the property of Zentral Real Estate."}
-          </p>
-
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "Sorumluluk Reddi" : "Disclaimer"}</h2>
-          <p className="mb-6">
-            {lang === 'tr'
-              ? "Zentral Gayrimenkul, bu internet sitesinde yer alan bütün ürün ve hizmetleri önceden bildirimde bulunmadan değiştirme hakkını saklı tutar."
-              : "Zentral Real Estate reserves the right to change all products and services on this website without prior notice."}
-          </p>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-500 uppercase">{lang === 'tr' ? 'Emlak Tipi' : 'Property Type'}</label>
+          <select className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+            <option>{lang === 'tr' ? 'Daire' : 'Apartment'}</option>
+            <option>{lang === 'tr' ? 'Villa' : 'Villa'}</option>
+            <option>{lang === 'tr' ? 'Arsa' : 'Land'}</option>
+            <option>{lang === 'tr' ? 'Ofis' : 'Office'}</option>
+          </select>
         </div>
-      </section>
-    </main>
-  );
-}
-`;
 
-// =====================================================================
-// 3. PROJELER LİSTESİ
-// =====================================================================
-const projelerCode = `"use client";
-import PageBanner from "@/components/PageBanner";
-import Image from "next/image";
-import Link from "next/link";
-import { MapPin } from "lucide-react";
-import { useLanguage } from "@/components/LanguageContext";
-
-const allProjects = [
-  { id: 1, title: "Vadi İstanbul Konakları", loc: "Sarıyer, İstanbul", typeTR: "Konut", typeEN: "Residential", img: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00" },
-  { id: 2, title: "Organize Sanayi Depo", loc: "Sincan, Ankara", typeTR: "Sanayi", typeEN: "Industrial", img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d" },
-  { id: 3, title: "Skyline Business Tower", loc: "Dubai", typeTR: "Ticari", typeEN: "Commercial", img: "https://images.unsplash.com/photo-1486325212027-8081e485255e" },
-  { id: 4, title: "Green Life Villaları", loc: "Bodrum, Muğla", typeTR: "Konut", typeEN: "Residential", img: "https://images.unsplash.com/photo-1600596542815-2250651d60c0" },
-  { id: 5, title: "Lojistik Merkez Üssü", loc: "Gebze, Kocaeli", typeTR: "Lojistik", typeEN: "Logistics", img: "https://images.unsplash.com/photo-1553413077-190dd305871c" },
-  { id: 6, title: "Finans Merkezi Ofis", loc: "Ataşehir, İstanbul", typeTR: "Ticari", typeEN: "Commercial", img: "https://images.unsplash.com/photo-1497366216548-37526070297c" },
-];
-
-export default function ProjelerPage() {
-  const { lang } = useLanguage();
-
-  return (
-    <main className="bg-white min-h-screen">
-      <PageBanner title={lang === 'tr' ? "PROJELERİMİZ" : "OUR PROJECTS"} image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80" />
-      <section className="py-20 container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allProjects.map((project) => (
-            <Link key={project.id} href={\`/projeler/\${project.id}\`} className="group cursor-pointer block">
-              <div className="relative h-72 overflow-hidden rounded-sm mb-4">
-                <Image src={project.img} alt={project.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute top-4 left-4 bg-yellow-600 text-white text-xs font-bold px-3 py-1">
-                  {lang === 'tr' ? project.typeTR : project.typeEN}
-                </div>
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 group-hover:text-yellow-600 transition-colors">{project.title}</h3>
-              <div className="flex items-center text-gray-500 text-sm mt-1">
-                <MapPin size={16} className="mr-1" /> {project.loc}
-              </div>
-            </Link>
-          ))}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-500 uppercase">{lang === 'tr' ? 'Fiyat Aralığı' : 'Price Range'}</label>
+          <select className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+            <option>{lang === 'tr' ? 'Tümü' : 'All'}</option>
+            <option>0 - 1.000.000 ₺</option>
+            <option>1M - 3M ₺</option>
+            <option>3M - 5M ₺</option>
+            <option>5M ₺ +</option>
+          </select>
         </div>
-      </section>
-    </main>
-  );
-}
-`;
 
-// =====================================================================
-// 4. PROJE DETAY SAYFASI
-// =====================================================================
-const projeDetayCode = `"use client";
-import PageBanner from "@/components/PageBanner";
-import { MapPin, Bed, Bath, Move } from "lucide-react";
-import { useLanguage } from "@/components/LanguageContext";
-import { use } from "react";
-
-const projectsData = [
-  {
-    id: "1",
-    title: "Vadi İstanbul Konakları",
-    location: "Sarıyer, İstanbul",
-    priceTR: "15.000.000 ₺ Başlayan Fiyatlarla",
-    priceEN: "Starting from 15.000.000 ₺",
-    descTR: "İstanbul'un en prestijli konumunda, orman manzaralı lüks yaşam.",
-    descEN: "Luxury living with forest view in the most prestigious location of Istanbul.",
-    specs: { beds: 4, baths: 3, area: 240 },
-    images: ["https://images.unsplash.com/photo-1545324418-cc1a3fa10c00"]
-  }
-];
-
-export default function ProjectDetail({ params }: { params: Promise<{ id: string }> }) {
-  const { lang } = useLanguage();
-  const resolvedParams = use(params);
-  const project = projectsData.find(p => p.id === resolvedParams.id) || projectsData[0];
-
-  return (
-    <main className="bg-white min-h-screen">
-      <PageBanner title={project.title.toUpperCase()} image={project.images[0]} />
-      <div className="container mx-auto px-6 py-16">
-        <div className="flex flex-col lg:flex-row gap-12">
-
-          <div className="w-full lg:w-2/3">
-            <h2 className="text-3xl font-bold text-slate-900 mb-2">{project.title}</h2>
-            <div className="flex items-center text-gray-500 mb-6">
-              <MapPin size={18} className="mr-1 text-yellow-600" /> {project.location}
-            </div>
-
-            <div className="flex gap-6 border-y border-gray-200 py-6 mb-8">
-               <div className="flex items-center gap-2 text-slate-800"><Move className="text-yellow-600"/> <b>{project.specs.area} m²</b></div>
-               <div className="flex items-center gap-2 text-slate-800"><Bed className="text-yellow-600"/> <b>{project.specs.beds} {lang === 'tr' ? "Oda" : "Beds"}</b></div>
-               <div className="flex items-center gap-2 text-slate-800"><Bath className="text-yellow-600"/> <b>{project.specs.baths} {lang === 'tr' ? "Banyo" : "Baths"}</b></div>
-            </div>
-
-            <h3 className="text-xl font-bold text-slate-900 mb-4">{lang === 'tr' ? "Proje Hakkında" : "About the Project"}</h3>
-            <p className="text-gray-600 leading-relaxed mb-8">{lang === 'tr' ? project.descTR : project.descEN}</p>
-          </div>
-
-          <div className="w-full lg:w-1/3">
-            <div className="bg-slate-900 text-white p-8 rounded-sm sticky top-32">
-              <p className="text-gray-400 text-sm uppercase">{lang === 'tr' ? "Fiyat" : "Price"}</p>
-              <div className="text-2xl font-bold text-yellow-500 mb-6">{lang === 'tr' ? project.priceTR : project.priceEN}</div>
-              <a href="/iletisim" className="block w-full text-center bg-yellow-600 py-3 font-bold rounded-sm hover:bg-yellow-700 transition-colors">
-                {lang === 'tr' ? "BİLGİ AL" : "GET INFORMATION"}
-              </a>
-            </div>
-          </div>
-
+        <div className="flex items-end">
+          <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+            <Search size={20} />
+            {lang === 'tr' ? 'İlan Ara' : 'Search'}
+          </button>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 `;
 
-// Dosyaları Yazma
+// =====================================================================
+// 2. PROPERTY CARD (İlan Kartı) - TAM KOD
+// =====================================================================
+const propertyCardCode = `import Image from 'next/image';
+import Link from 'next/link';
+import { Bed, Bath, Move, MapPin } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
+
+interface PropertyProps {
+  id: string;
+  title: string;
+  price: number;
+  location: string;
+  image: string;
+  beds: number;
+  baths: number;
+  sqft: number;
+  type: 'Satılık' | 'Kiralık';
+}
+
+export default function PropertyCard({ property }: { property: PropertyProps }) {
+  const { lang } = useLanguage();
+
+  // Fiyat formatlama (örn: 1.250.000 ₺)
+  const formattedPrice = new Intl.NumberFormat('tr-TR', {
+    style: 'currency',
+    currency: 'TRY',
+    maximumFractionDigits: 0,
+  }).format(property.price);
+
+  return (
+    <Link href={\`/ilan/\${property.id}\`} className="group block bg-white border rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+      {/* Resim Alanı */}
+      <div className="relative h-64 w-full overflow-hidden">
+        <span className={\`absolute top-3 left-3 px-3 py-1 text-xs font-bold text-white rounded-full z-10 \${property.type === 'Satılık' ? 'bg-blue-600' : 'bg-green-600'}\`}>
+          {property.type === 'Satılık' ? (lang === 'tr' ? 'Satılık' : 'For Sale') : (lang === 'tr' ? 'Kiralık' : 'For Rent')}
+        </span>
+        <Image
+          src={property.image}
+          alt={property.title}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+      </div>
+
+      {/* İçerik Alanı */}
+      <div className="p-5">
+        <div className="flex items-center text-gray-500 text-sm mb-2">
+          <MapPin size={16} className="mr-1" />
+          {property.location}
+        </div>
+
+        <h3 className="text-xl font-bold text-gray-900 mb-2 truncate">{property.title}</h3>
+        <div className="text-2xl font-bold text-blue-600 mb-4">{formattedPrice}</div>
+
+        <div className="flex justify-between items-center text-gray-600 border-t pt-4">
+          <div className="flex items-center gap-1">
+            <Bed size={18} />
+            <span className="text-sm font-medium">{property.beds} {lang === 'tr' ? 'Oda' : 'Beds'}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Bath size={18} />
+            <span className="text-sm font-medium">{property.baths} {lang === 'tr' ? 'Banyo' : 'Baths'}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Move size={18} />
+            <span className="text-sm font-medium">{property.sqft} m²</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+`;
+
+// =====================================================================
+// 3. PROPERTY FEATURES (İlan Detay Özellikleri) - TAM KOD
+// =====================================================================
+const propertyFeaturesCode = `import { CheckCircle2 } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
+
+interface FeatureProps {
+  features: string[];
+}
+
+export default function PropertyFeatures({ features }: FeatureProps) {
+  const { lang } = useLanguage();
+
+  return (
+    <div className="bg-gray-50 p-6 rounded-xl mt-8">
+      <h3 className="text-xl font-bold text-gray-900 mb-4">
+        {lang === 'tr' ? 'Emlak Özellikleri' : 'Property Features'}
+      </h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-6">
+        {features.map((feature, index) => (
+          <div key={index} className="flex items-center gap-2 text-gray-700">
+            <CheckCircle2 size={18} className="text-blue-600 " />
+            <span>{feature}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+`;
+
+// Dosyaları Yazma İşlemi
 fs.writeFileSync(
-  path.join(__dirname, "app", "gizlilik-politikasi", "page.tsx"),
-  gizlilikCode,
+  path.join(__dirname, "components", "SearchFilter.tsx"),
+  searchFilterCode,
 );
 fs.writeFileSync(
-  path.join(__dirname, "app", "kullanim-sartlari", "page.tsx"),
-  kullanimCode,
+  path.join(__dirname, "components", "PropertyCard.tsx"),
+  propertyCardCode,
 );
 fs.writeFileSync(
-  path.join(__dirname, "app", "projeler", "page.tsx"),
-  projelerCode,
-);
-fs.writeFileSync(
-  path.join(__dirname, "app", "projeler", "[id]", "page.tsx"),
-  projeDetayCode,
+  path.join(__dirname, "components", "PropertyFeatures.tsx"),
+  propertyFeaturesCode,
 );
 
 console.log(
-  "✅ Proje %100 Hazır! Kıyıda köşede kalan tüm sayfalar Çift Dilli (TR/EN) hale getirildi.",
+  "✅ İşlem Başarılı! Arama filtresi ve İlan kartları projenizden hiçbir özellik veya sınıf çıkarılmadan Çift Dilli (TR/EN) hale getirildi.",
 );
