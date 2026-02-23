@@ -1,62 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
-// Temel ayarlar
 const DOMAIN = "https://www.zentralgayrimenkul.com";
 const SITE_NAME = "Zentral Gayrimenkul";
 
-// 1. Merkezi siteConfig dosyasını oluşturma
-const configDir = path.join(__dirname, "config");
-if (!fs.existsSync(configDir)) {
-  fs.mkdirSync(configDir, { recursive: true });
-}
-
-const siteConfigCode = `export const siteConfig = {
-  name: "${SITE_NAME}",
-  description: "Konya ve Ankara'nın önde gelen gayrimenkul danışmanlık firması Zentral Gayrimenkul ile kârlı yatırımlar, güvenilir konut ve arsa fırsatları.",
-  url: "${DOMAIN}",
-  ogImage: "${DOMAIN}/logo.png",
-  keywords: [
-    "gayrimenkul", "emlak", "konya emlak", "ankara gayrimenkul",
-    "yatırım", "arsa", "satılık daire", "kiralık ev", "ticari mülk",
-    "konya satılık arsa", "ankara yatırım danışmanlığı"
-  ],
-  creator: "${SITE_NAME}",
-  authors: [{ name: "${SITE_NAME}", url: "${DOMAIN}" }],
-  links: {
-    twitter: "https://twitter.com/zentralgayrimenkul",
-  }
-};
-`;
-
-fs.writeFileSync(path.join(configDir, "site.ts"), siteConfigCode, "utf8");
-console.log("✅ config/site.ts dosyası oluşturuldu.");
-
-// 2. Sayfalar ve her sayfaya ÖZEL SEO (Konya ve Ankara Odaklı Keywords) verileri
-const pages = [
+// Bölgesel (Ankara & Konya) SEO verilerimiz
+const pagesData = [
   {
-    file: "app/layout.tsx",
-    isLayout: true,
-  },
-  {
-    file: "app/page.tsx",
-    title: "Ana Sayfa",
-    desc: "Zentral Gayrimenkul | Konya ve Ankara emlak ofislerimizle satılık ev, arsa yatırımı ve güvenilir gayrimenkul danışmanlığı hizmetleri sunuyoruz.",
-    route: "/",
-    keywords: [
-      "konya gayrimenkul",
-      "ankara emlak ofisi",
-      "zentral gayrimenkul",
-      "satılık ev konya",
-      "kiralık daire ankara",
-      "konya emlakçı",
-      "ankara emlak danışmanlığı",
-      "arsa yatırımı",
-      "kârlı gayrimenkul",
-    ],
-  },
-  {
-    file: "app/kurumsal/page.tsx",
+    folder: "app/kurumsal",
     title: "Kurumsal",
     desc: "Zentral Gayrimenkul hakkında. Konya ve Ankara merkezli ofislerimizle gayrimenkul sektöründe güven, misyon ve vizyonumuz.",
     route: "/kurumsal",
@@ -72,7 +23,7 @@ const pages = [
     ],
   },
   {
-    file: "app/projeler/page.tsx",
+    folder: "app/projeler",
     title: "Projeler",
     desc: "Konya ve Ankara bölgesindeki en güncel, kazançlı ve lüks gayrimenkul & konut projelerini inceleyin.",
     route: "/projeler",
@@ -88,7 +39,7 @@ const pages = [
     ],
   },
   {
-    file: "app/yatirim/page.tsx",
+    folder: "app/yatirim",
     title: "Yatırım",
     desc: "Geleceğinizi güvence altına alacak Ankara ve Konya kârlı gayrimenkul yatırım fırsatları, arsa ve ticari mülk seçenekleri.",
     route: "/yatirim",
@@ -103,7 +54,7 @@ const pages = [
     ],
   },
   {
-    file: "app/medya/page.tsx",
+    folder: "app/medya",
     title: "Medya",
     desc: "Gayrimenkul sektörü, Konya ve Ankara emlak piyasası gelişmeleri, haberler ve Zentral Gayrimenkul duyuruları.",
     route: "/medya",
@@ -118,7 +69,7 @@ const pages = [
     ],
   },
   {
-    file: "app/iletisim/page.tsx",
+    folder: "app/iletisim",
     title: "İletişim",
     desc: "Zentral Gayrimenkul iletişim bilgileri. Konya ve Ankara ofislerimizin adresleri, telefon numaraları ve iletişim formumuz.",
     route: "/iletisim",
@@ -132,7 +83,7 @@ const pages = [
     ],
   },
   {
-    file: "app/gizlilik-politikasi/page.tsx",
+    folder: "app/gizlilik-politikasi",
     title: "Gizlilik Politikası",
     desc: "Zentral Gayrimenkul gizlilik politikası, KVKK aydınlatma metni ve kişisel verilerin korunması hakkında bilgilendirme.",
     route: "/gizlilik-politikasi",
@@ -145,7 +96,7 @@ const pages = [
     ],
   },
   {
-    file: "app/kullanim-sartlari/page.tsx",
+    folder: "app/kullanim-sartlari",
     title: "Kullanım Şartları",
     desc: "Zentral Gayrimenkul web sitesi kullanım şartları ve yasal koşulları.",
     route: "/kullanim-sartlari",
@@ -159,153 +110,99 @@ const pages = [
   },
 ];
 
-// Layout için ana metadata kodu (config/site'dan çeker)
-const layoutMetadataCode = `
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: \`%s | \${siteConfig.name}\`,
-  },
-  description: siteConfig.description,
-  keywords: siteConfig.keywords,
-  creator: siteConfig.creator,
-  authors: siteConfig.authors,
-  metadataBase: new URL(siteConfig.url),
+// Page.tsx dosyasını temizleme fonksiyonu (metadata'yı siler ve "use client"ı en üste alır)
+function cleanPageFile(filePath) {
+  if (!fs.existsSync(filePath)) return;
+  let content = fs.readFileSync(filePath, "utf8");
 
-  // Hreflang ve Canonical ayarları
-  alternates: {
-    canonical: "/",
-    languages: {
-      en: "/",
-      "en-US": "/",
-      tr: "/",
-      "tr-TR": "/",
-    },
-  },
+  // Metadata bloğunu güvenlice uçur
+  const metaStart = content.indexOf("export const metadata");
+  if (metaStart !== -1) {
+    let braceCount = 0;
+    let inMeta = false;
+    let metaEnd = -1;
+    for (let i = metaStart; i < content.length; i++) {
+      if (content[i] === "{") {
+        braceCount++;
+        inMeta = true;
+      } else if (content[i] === "}") {
+        braceCount--;
+      }
 
-  // Sosyal Medya ve Paylaşım Görünümü (OpenGraph)
-  openGraph: {
-    type: "website",
-    locale: "tr_TR",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: siteConfig.links.twitter,
-  },
-
-  // Arama Motoru Bot Kuralları
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-};
-`;
-
-// İç sayfalar için Canonical + SEO metadata (Keywords dahil) kodu
-const getPageMetadata = (title, desc, route, keywords) => `
-export const metadata: Metadata = {
-  title: "${title}",
-  description: "${desc}",
-  keywords: ${JSON.stringify(keywords)},
-  alternates: {
-    canonical: "${route}",
-  },
-  openGraph: {
-    title: "${title} | ${SITE_NAME}",
-    description: "${desc}",
-    url: \`${DOMAIN}${route}\`,
-  },
-};
-`;
-
-// Dosya içi eski metadata kalıntılarını temizleme fonksiyonu
-function removeOldMetadata(content) {
-  const startIndex = content.indexOf("export const metadata");
-  if (startIndex === -1) return content;
-
-  const braceStartIndex = content.indexOf("{", startIndex);
-  if (braceStartIndex === -1) return content;
-
-  let braceCount = 1;
-  let endIndex = braceStartIndex + 1;
-
-  while (braceCount > 0 && endIndex < content.length) {
-    if (content[endIndex] === "{") braceCount++;
-    else if (content[endIndex] === "}") braceCount--;
-    endIndex++;
+      if (inMeta && braceCount === 0) {
+        metaEnd = i;
+        if (content[i + 1] === ";") metaEnd++;
+        break;
+      }
+    }
+    if (metaEnd !== -1) {
+      content = content.slice(0, metaStart) + content.slice(metaEnd + 1);
+    }
   }
 
-  if (content[endIndex] === ";") endIndex++;
+  // Metadata import satırlarını temizle
+  content = content.replace(
+    /import\s*\{\s*Metadata\s*\}\s*from\s*['"]next['"];?\n?/g,
+    "",
+  );
 
-  return content.slice(0, startIndex) + content.slice(endIndex);
+  // "use client" durumunu sayfanın en başına zorunlu olarak taşı
+  const useClientRegex = /['"]use client['"];?/g;
+  const parenthesisClientRegex = /\(['"]use client['"]\);?/g;
+
+  if (useClientRegex.test(content) || parenthesisClientRegex.test(content)) {
+    content = content.replace(useClientRegex, "");
+    content = content.replace(parenthesisClientRegex, "");
+    content = '"use client";\n\n' + content.trimStart();
+  }
+
+  fs.writeFileSync(filePath, content.trim() + "\n", "utf8");
+  console.log(
+    `✅ Hatalar temizlendi: ${filePath.split(path.sep).slice(-2).join("/")}`,
+  );
 }
 
-// Dosyanın başına gerekli importları ekleme fonksiyonu
-function ensureImports(content, isLayout) {
-  let prepend = "";
-  if (
-    !content.includes("import { Metadata }") &&
-    !content.includes("import type { Metadata }")
-  ) {
-    prepend += `import { Metadata } from "next";\n`;
-  }
-  if (isLayout && !content.includes("@/config/site")) {
-    prepend += `import { siteConfig } from "@/config/site";\n`;
-  }
-  return prepend + content;
+// Next.js standartlarına uygun SEO Layout dosyası oluşturma fonksiyonu
+function createLayoutFile(data) {
+  const folderPath = path.join(__dirname, data.folder);
+  if (!fs.existsSync(folderPath)) return;
+
+  const layoutPath = path.join(folderPath, "layout.tsx");
+  const layoutCode = `import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "${data.title}",
+  description: "${data.desc}",
+  keywords: ${JSON.stringify(data.keywords)},
+  alternates: {
+    canonical: "${data.route}",
+  },
+  openGraph: {
+    title: "${data.title} | ${SITE_NAME}",
+    description: "${data.desc}",
+    url: \`${DOMAIN}${data.route}\`,
+  },
+};
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
+}
+`;
+
+  fs.writeFileSync(layoutPath, layoutCode, "utf8");
+  console.log(`✅ SEO eklendi: ${data.folder}/layout.tsx`);
 }
 
-// Dosyaları tarama ve işleme
-pages.forEach((page) => {
-  const filePath = path.join(__dirname, page.file);
+// Ana dizindeki app/page.tsx dosyasını temizle (Ana sayfa SEO'su app/layout.tsx içinden zaten yönetiliyor)
+cleanPageFile(path.join(__dirname, "app", "page.tsx"));
 
-  if (fs.existsSync(filePath)) {
-    let content = fs.readFileSync(filePath, "utf8");
-
-    // Varsa mevcut metadata export bloğunu güvenle uçuruyoruz
-    content = removeOldMetadata(content);
-
-    // Gerekli kütüphane/ayarları en üste ekliyoruz
-    content = ensureImports(content, page.isLayout);
-
-    // Dosyanın en altına yeni metadata bloğunu ekliyoruz
-    const metadataToAdd = page.isLayout
-      ? layoutMetadataCode
-      : getPageMetadata(page.title, page.desc, page.route, page.keywords);
-
-    content = content.trim() + "\n\n" + metadataToAdd;
-
-    fs.writeFileSync(filePath, content, "utf8");
-    console.log(
-      `✅ ${page.file} başarıyla bölgesel (Konya & Ankara) SEO için güncellendi.`,
-    );
-  } else {
-    console.log(`⚠️ ${page.file} bulunamadı, atlanıyor.`);
-  }
+// Alt sayfaları döngüyle temizle ve her klasöre özel layout.tsx (Server Component) oluştur
+pagesData.forEach((data) => {
+  const pagePath = path.join(__dirname, data.folder, "page.tsx");
+  cleanPageFile(pagePath);
+  createLayoutFile(data);
 });
 
 console.log(
-  "🚀 Tüm SEO, Keywords ve Canonical yapılandırmaları başarıyla tamamlandı!",
+  "🚀 Build Hatası Düzeltme ve SEO Optimizasyonu Tamamlandı! Vercel hatası çözüldü.",
 );
