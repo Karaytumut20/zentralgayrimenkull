@@ -1,31 +1,43 @@
-"use client";
+import { Metadata } from "next";
+("use client");
 
 import PageBanner from "@/components/PageBanner";
-import { Phone, Mail, MapPin, Navigation, User, Smartphone } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Navigation,
+  User,
+  Smartphone,
+} from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
 
 export default function IletisimPage() {
   const { lang } = useLanguage();
-  const konyaMapLink = "https://www.google.com/maps/search/?api=1&query=Kumköprü+Mahallesi,+Küçükkumköprü+Caddesi+No:176DC,+Karatay+/+Konya";
-  const konyaEmbedSrc = "https://maps.google.com/maps?q=Kumköprü+Mahallesi,+Küçükkumköprü+Caddesi+No:176DC,+Karatay+/+Konya&t=&z=15&ie=UTF8&iwloc=&output=embed";
-  const ankaraMapLink = "https://www.google.com/maps/search/?api=1&query=Ehlibeyt+Mah.+Ceyhun+Atuf+Kansu+Cad.+No:+100A/1238+Çankaya+/+ANKARA";
-  const ankaraEmbedSrc = "https://maps.google.com/maps?q=Ehlibeyt+Mah.+Ceyhun+Atuf+Kansu+Cad.+No:100A/1238+Çankaya+/+ANKARA&t=&z=15&ie=UTF8&iwloc=&output=embed";
+  const konyaMapLink =
+    "https://www.google.com/maps/search/?api=1&query=Kumköprü+Mahallesi,+Küçükkumköprü+Caddesi+No:176DC,+Karatay+/+Konya";
+  const konyaEmbedSrc =
+    "https://maps.google.com/maps?q=Kumköprü+Mahallesi,+Küçükkumköprü+Caddesi+No:176DC,+Karatay+/+Konya&t=&z=15&ie=UTF8&iwloc=&output=embed";
+  const ankaraMapLink =
+    "https://www.google.com/maps/search/?api=1&query=Ehlibeyt+Mah.+Ceyhun+Atuf+Kansu+Cad.+No:+100A/1238+Çankaya+/+ANKARA";
+  const ankaraEmbedSrc =
+    "https://maps.google.com/maps?q=Ehlibeyt+Mah.+Ceyhun+Atuf+Kansu+Cad.+No:100A/1238+Çankaya+/+ANKARA&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
   return (
     <main className="bg-white min-h-screen">
       <PageBanner
-        title={lang === 'tr' ? "İLETİŞİM" : "CONTACT"}
+        title={lang === "tr" ? "İLETİŞİM" : "CONTACT"}
         image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80"
       />
 
       <section className="py-20 container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <h2 className="text-4xl lg:text-5xl font-serif text-[#051328] mb-6">
-            {lang === 'tr' ? "Ofislerimiz" : "Our Offices"}
+            {lang === "tr" ? "Ofislerimiz" : "Our Offices"}
           </h2>
           <div className="w-24 h-1 bg-[#D4AF37] mx-auto mb-6"></div>
           <p className="text-gray-500 text-lg">
-            {lang === 'tr'
+            {lang === "tr"
               ? "Yatırım fırsatları hakkında detaylı bilgi almak için size en yakın ofisimizi ziyaret edebilir veya uzmanlarımızla iletişime geçebilirsiniz."
               : "To get detailed information about investment opportunities, you can visit our nearest office or contact our experts."}
           </p>
@@ -37,13 +49,13 @@ export default function IletisimPage() {
             <div className="w-full lg:w-1/2 space-y-8">
               <div>
                 <span className="text-[#D4AF37] font-bold tracking-widest text-sm uppercase">
-                  {lang === 'tr' ? "Genel Merkez" : "Headquarters"}
+                  {lang === "tr" ? "Genel Merkez" : "Headquarters"}
                 </span>
                 <h3 className="text-3xl font-serif text-[#051328] mt-2 mb-4">
-                  {lang === 'tr' ? "KONYA OFİS" : "KONYA OFFICE"}
+                  {lang === "tr" ? "KONYA OFİS" : "KONYA OFFICE"}
                 </h3>
                 <p className="text-gray-500 leading-relaxed">
-                  {lang === 'tr'
+                  {lang === "tr"
                     ? "Karatay'ın kalbinde, prestijli projelerimizi yerinde incelemeniz için sizleri bekliyoruz."
                     : "We welcome you to inspect our prestigious projects on site in the heart of Karatay."}
                 </p>
@@ -52,8 +64,12 @@ export default function IletisimPage() {
               <div className="space-y-6">
                 <ContactItem
                   icon={<MapPin size={24} />}
-                  title={lang === 'tr' ? "Adres" : "Address"}
-                  lines={["Kumköprü Mahallesi", "Küçükkumköprü Caddesi No: 176DC", "Karatay / KONYA"]}
+                  title={lang === "tr" ? "Adres" : "Address"}
+                  lines={[
+                    "Kumköprü Mahallesi",
+                    "Küçükkumköprü Caddesi No: 176DC",
+                    "Karatay / KONYA",
+                  ]}
                   link={konyaMapLink}
                 />
 
@@ -63,27 +79,47 @@ export default function IletisimPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-[#051328] text-lg mb-1 group-hover:text-[#D4AF37] transition-colors">
-                      {lang === 'tr' ? "Telefonlar" : "Phones"}
+                      {lang === "tr" ? "Telefonlar" : "Phones"}
                     </h4>
-                    <a href="tel:+903322338042" className="block text-gray-600 font-medium hover:text-[#051328] transition-colors">
-                      0332 233 80 42 <span className="text-gray-400 text-sm font-normal">({lang === 'tr' ? "Ofis" : "Office"})</span>
+                    <a
+                      href="tel:+903322338042"
+                      className="block text-gray-600 font-medium hover:text-[#051328] transition-colors"
+                    >
+                      0332 233 80 42{" "}
+                      <span className="text-gray-400 text-sm font-normal">
+                        ({lang === "tr" ? "Ofis" : "Office"})
+                      </span>
                     </a>
-                    <a href="tel:+905013338042" className="block text-gray-600 font-medium hover:text-[#051328] transition-colors mt-1">
-                      0501 333 80 42 <span className="text-gray-400 text-sm font-normal">({lang === 'tr' ? "Mobil" : "Mobile"})</span>
+                    <a
+                      href="tel:+905013338042"
+                      className="block text-gray-600 font-medium hover:text-[#051328] transition-colors mt-1"
+                    >
+                      0501 333 80 42{" "}
+                      <span className="text-gray-400 text-sm font-normal">
+                        ({lang === "tr" ? "Mobil" : "Mobile"})
+                      </span>
                     </a>
                   </div>
                 </div>
 
                 <ContactItem
                   icon={<Mail size={24} />}
-                  title={lang === 'tr' ? "E-Posta" : "E-Mail"}
-                  lines={["zentralgayrimenkul@gmail.com", lang === 'tr' ? "7/24 Bize Ulaşın" : "Contact us 24/7"]}
+                  title={lang === "tr" ? "E-Posta" : "E-Mail"}
+                  lines={[
+                    "zentralgayrimenkul@gmail.com",
+                    lang === "tr" ? "7/24 Bize Ulaşın" : "Contact us 24/7",
+                  ]}
                   link="mailto:zentralgayrimenkul@gmail.com"
                 />
               </div>
             </div>
 
-            <MapBox embedSrc={konyaEmbedSrc} link={konyaMapLink} locationName="Konya / Karatay" lang={lang} />
+            <MapBox
+              embedSrc={konyaEmbedSrc}
+              link={konyaMapLink}
+              locationName="Konya / Karatay"
+              lang={lang}
+            />
           </div>
 
           {/* ==================== ANKARA ŞUBE ==================== */}
@@ -91,13 +127,13 @@ export default function IletisimPage() {
             <div className="w-full lg:w-1/2 space-y-8">
               <div>
                 <span className="text-[#D4AF37] font-bold tracking-widest text-sm uppercase">
-                  {lang === 'tr' ? "Şube" : "Branch"}
+                  {lang === "tr" ? "Şube" : "Branch"}
                 </span>
                 <h3 className="text-3xl font-serif text-[#051328] mt-2 mb-4">
-                  {lang === 'tr' ? "ANKARA OFİS" : "ANKARA OFFICE"}
+                  {lang === "tr" ? "ANKARA OFİS" : "ANKARA OFFICE"}
                 </h3>
                 <p className="text-gray-500 leading-relaxed">
-                  {lang === 'tr'
+                  {lang === "tr"
                     ? "Başkent'teki yatırımlarınız ve projelerimiz için Çankaya ofisimizde hizmetinizdeyiz."
                     : "We are at your service in our Çankaya office for your investments and projects in the capital."}
                 </p>
@@ -106,8 +142,11 @@ export default function IletisimPage() {
               <div className="space-y-6">
                 <ContactItem
                   icon={<MapPin size={24} />}
-                  title={lang === 'tr' ? "Adres" : "Address"}
-                  lines={["Ehlibeyt Mah. Ceyhun Atuf Kansu Cad.", "No: 100A/1238 Çankaya / ANKARA"]}
+                  title={lang === "tr" ? "Adres" : "Address"}
+                  lines={[
+                    "Ehlibeyt Mah. Ceyhun Atuf Kansu Cad.",
+                    "No: 100A/1238 Çankaya / ANKARA",
+                  ]}
                   link={ankaraMapLink}
                 />
 
@@ -119,7 +158,10 @@ export default function IletisimPage() {
                     <h4 className="font-bold text-[#051328] text-lg mb-1 group-hover:text-[#D4AF37] transition-colors">
                       Ahmet Mesut Okkalı
                     </h4>
-                    <a href="tel:+905323991663" className="block text-gray-600 font-medium hover:text-[#051328] transition-colors">
+                    <a
+                      href="tel:+905323991663"
+                      className="block text-gray-600 font-medium hover:text-[#051328] transition-colors"
+                    >
                       0532 399 1663
                     </a>
                   </div>
@@ -127,14 +169,22 @@ export default function IletisimPage() {
 
                 <ContactItem
                   icon={<Mail size={24} />}
-                  title={lang === 'tr' ? "E-Posta" : "E-Mail"}
-                  lines={["zentralankara@gmail.com", lang === 'tr' ? "Ankara ofisi için" : "For Ankara office"]}
+                  title={lang === "tr" ? "E-Posta" : "E-Mail"}
+                  lines={[
+                    "zentralankara@gmail.com",
+                    lang === "tr" ? "Ankara ofisi için" : "For Ankara office",
+                  ]}
                   link="mailto:zentralankara@gmail.com"
                 />
               </div>
             </div>
 
-            <MapBox embedSrc={ankaraEmbedSrc} link={ankaraMapLink} locationName="Ankara / Çankaya" lang={lang} />
+            <MapBox
+              embedSrc={ankaraEmbedSrc}
+              link={ankaraMapLink}
+              locationName="Ankara / Çankaya"
+              lang={lang}
+            />
           </div>
         </div>
       </section>
@@ -142,34 +192,86 @@ export default function IletisimPage() {
   );
 }
 
-function ContactItem({ icon, title, lines, link }: { icon: any; title: string; lines: string[]; link: string; }) {
+function ContactItem({
+  icon,
+  title,
+  lines,
+  link,
+}: {
+  icon: any;
+  title: string;
+  lines: string[];
+  link: string;
+}) {
   return (
-    <a href={link} target={link.startsWith("http") ? "_blank" : "_self"} rel="noopener noreferrer" className="flex items-start gap-4 group cursor-pointer">
+    <a
+      href={link}
+      target={link.startsWith("http") ? "_blank" : "_self"}
+      rel="noopener noreferrer"
+      className="flex items-start gap-4 group cursor-pointer"
+    >
       <div className="w-12 h-12 bg-[#051328] text-[#D4AF37] flex items-center justify-center rounded-sm shadow-lg group-hover:bg-[#D4AF37] group-hover:text-[#051328] transition-all duration-300 flex-shrink-0">
         {icon}
       </div>
       <div>
-        <h4 className="font-bold text-[#051328] text-lg mb-1 group-hover:text-[#D4AF37] transition-colors">{title}</h4>
+        <h4 className="font-bold text-[#051328] text-lg mb-1 group-hover:text-[#D4AF37] transition-colors">
+          {title}
+        </h4>
         {lines.map((line, index) => (
-          <p key={index} className="text-gray-600 font-medium group-hover:text-gray-800 transition-colors text-sm lg:text-base">{line}</p>
+          <p
+            key={index}
+            className="text-gray-600 font-medium group-hover:text-gray-800 transition-colors text-sm lg:text-base"
+          >
+            {line}
+          </p>
         ))}
       </div>
     </a>
   );
 }
 
-function MapBox({ embedSrc, link, locationName, lang }: { embedSrc: string; link: string; locationName: string; lang: string; }) {
+function MapBox({
+  embedSrc,
+  link,
+  locationName,
+  lang,
+}: {
+  embedSrc: string;
+  link: string;
+  locationName: string;
+  lang: string;
+}) {
   return (
     <div className="w-full lg:w-1/2 relative h-[400px] lg:h-[500px]">
       <div className="absolute -inset-3 border-2 border-[#D4AF37]/20 rounded-sm z-0"></div>
-      <a href={link} target="_blank" rel="noopener noreferrer" className="block relative h-full w-full bg-[#051328] p-1 shadow-2xl rounded-sm z-10 overflow-hidden group cursor-pointer">
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block relative h-full w-full bg-[#051328] p-1 shadow-2xl rounded-sm z-10 overflow-hidden group cursor-pointer"
+      >
         <div className="w-full h-full relative pointer-events-none">
-          <iframe src={embedSrc} width="100%" height="100%" style={{ border: 0, filter: "grayscale(100%) invert(90%) contrast(85%)" }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="group-hover:filter-none transition-all duration-700"></iframe>
+          <iframe
+            src={embedSrc}
+            width="100%"
+            height="100%"
+            style={{
+              border: 0,
+              filter: "grayscale(100%) invert(90%) contrast(85%)",
+            }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="group-hover:filter-none transition-all duration-700"
+          ></iframe>
         </div>
         <div className="absolute bottom-6 left-6 bg-white p-4 shadow-xl border-l-4 border-[#D4AF37] max-w-xs animate-in slide-in-from-bottom-5 duration-700 group-hover:scale-105 transition-transform">
-          <h5 className="font-serif font-bold text-[#051328] text-lg mb-1">{locationName}</h5>
+          <h5 className="font-serif font-bold text-[#051328] text-lg mb-1">
+            {locationName}
+          </h5>
           <div className="flex items-center gap-2 text-[#D4AF37] font-bold text-xs tracking-widest uppercase hover:text-[#051328] transition-colors">
-            {lang === 'tr' ? "Yol Tarifi" : "Get Directions"} <Navigation size={12} />
+            {lang === "tr" ? "Yol Tarifi" : "Get Directions"}{" "}
+            <Navigation size={12} />
           </div>
         </div>
         <div className="absolute inset-0 bg-[#D4AF37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
@@ -177,3 +279,18 @@ function MapBox({ embedSrc, link, locationName, lang }: { embedSrc: string; link
     </div>
   );
 }
+
+
+export const metadata: Metadata = {
+  title: "İletişim",
+  description: "Zentral Gayrimenkul iletişim bilgileri. Konya ve Ankara ofislerimizin adresleri, telefon numaraları ve iletişim formumuz.",
+  keywords: ["zentral gayrimenkul iletişim","konya emlak ofisi adresi","ankara gayrimenkul telefon","emlak danışmanına ulaşın","konya ankara emlak","bize ulaşın"],
+  alternates: {
+    canonical: "/iletisim",
+  },
+  openGraph: {
+    title: "İletişim | Zentral Gayrimenkul",
+    description: "Zentral Gayrimenkul iletişim bilgileri. Konya ve Ankara ofislerimizin adresleri, telefon numaraları ve iletişim formumuz.",
+    url: `https://www.zentralgayrimenkul.com/iletisim`,
+  },
+};

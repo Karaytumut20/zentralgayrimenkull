@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 "use client";
 import PageBanner from "@/components/PageBanner";
 import { useLanguage } from "@/components/LanguageContext";
@@ -37,3 +38,18 @@ export default function GizlilikPage() {
     </main>
   );
 }
+
+
+export const metadata: Metadata = {
+  title: "Gizlilik Politikası",
+  description: "Zentral Gayrimenkul gizlilik politikası, KVKK aydınlatma metni ve kişisel verilerin korunması hakkında bilgilendirme.",
+  keywords: ["gizlilik politikası","kvkk aydınlatma metni","kişisel verilerin korunması","veri güvenliği","çerez politikası emlak"],
+  alternates: {
+    canonical: "/gizlilik-politikasi",
+  },
+  openGraph: {
+    title: "Gizlilik Politikası | Zentral Gayrimenkul",
+    description: "Zentral Gayrimenkul gizlilik politikası, KVKK aydınlatma metni ve kişisel verilerin korunması hakkında bilgilendirme.",
+    url: `https://www.zentralgayrimenkul.com/gizlilik-politikasi`,
+  },
+};
