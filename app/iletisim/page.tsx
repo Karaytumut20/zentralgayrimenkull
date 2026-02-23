@@ -1,6 +1,5 @@
 "use client";
 
-();
 
 import PageBanner from "@/components/PageBanner";
 import {

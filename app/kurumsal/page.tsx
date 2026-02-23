@@ -1,6 +1,5 @@
 "use client";
 
-();
 
 import React, { useState } from "react";
 import PageBanner from "@/components/PageBanner";
