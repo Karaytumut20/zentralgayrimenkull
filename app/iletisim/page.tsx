@@ -15,11 +15,11 @@ import { useLanguage } from "@/components/LanguageContext";
 export default function IletisimPage() {
   const { lang } = useLanguage();
   const konyaMapLink =
-    "https://www.google.com/maps/search/?api=1&query=Kumköprü+Mahallesi,+Küçükkumköprü+Caddesi+No:176DC,+Karatay+/+Konya";
+    "https://maps.app.goo.gl/u1nSimYFRpu4MFjB7";
   const konyaEmbedSrc =
     "https://maps.google.com/maps?q=Kumköprü+Mahallesi,+Küçükkumköprü+Caddesi+No:176DC,+Karatay+/+Konya&t=&z=15&ie=UTF8&iwloc=&output=embed";
   const ankaraMapLink =
-    "https://www.google.com/maps/search/?api=1&query=Ehlibeyt+Mah.+Ceyhun+Atuf+Kansu+Cad.+No:+100A/1238+Çankaya+/+ANKARA";
+    "https://maps.app.goo.gl/2Bpn2eGKkEHqT82T6";
   const ankaraEmbedSrc =
     "https://maps.google.com/maps?q=Ehlibeyt+Mah.+Ceyhun+Atuf+Kansu+Cad.+No:100A/1238+Çankaya+/+ANKARA&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
